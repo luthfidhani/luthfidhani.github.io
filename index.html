@@ -64,7 +64,7 @@
               <hr>
               <div class="row">
                 <div class="col-md-4 d-flex justify-content-center" v-for="project in projects">
-                  <div class="card border-0 shadow my-3" style="width: 20rem; ">
+                  <div class="card card-hover border-0 shadow my-3" style="width: 20rem; ">
                     <img v-bind:src="project.image" class="card-img-top" alt="project.image">
                     <div class="card-body">
                       <category v-for="cat in project.category">
@@ -112,9 +112,11 @@
           { icon: "fa fa-envelope", link: "mailto:luthfidhani17@gmail.com" },
         ],
         skills: [
+          { link: "assets/img/skils/airflow.png", alt: "airflow" },
           { link: "assets/img/skils/aws.png", alt: "aws" },
           { link: "assets/img/skils/azure.png", alt: "azure" },
           { link: "assets/img/skils/codeigniter.png", alt: "codeigniter" },
+          { link: "assets/img/skils/dbt.png", alt: "dbt" },
           { link: "assets/img/skils/django.png", alt: "django" },
           { link: "assets/img/skils/docker.png", alt: "docker" },
           { link: "assets/img/skils/fastapi.png", alt: "fastapi" },
@@ -129,6 +131,13 @@
           { link: "assets/img/skils/vue.png", alt: "vue" },
         ],
         projects: [
+          {
+            image: "assets/img/projects/skoring-microsoft.png",
+            title: "Youtube Downloader Bot Telegram",
+            description: "ini description",
+            link: "https://github.com/luthfidhani/sistem-skoring-pelatihan-microsoft",
+            category: ["Machine Learning", "Web", "Azure"]
+          },
           {
             image: "assets/img/projects/skoring-microsoft.png",
             title: "Sistem Skoring Pelatihan Microsoft",
