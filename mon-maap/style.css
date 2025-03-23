@@ -1,147 +1,163 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i);
 
 a {
-    text-decoration: none
+  text-decoration: none;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
-    background: #00cec9;
-    background-image: linear-gradient(45deg, #00cec9 25%, #01c8c3 25%, #01c8c3 75%, #00cec9 75%, #00cec9), linear-gradient(-45deg, #00cec9 25%, #01c8c3 25%, #01c8c3 75%, #00cec9 75%, #00cec9);
-    background-size: 1px 150px;
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    line-height: normal;
-    height: 100vh;
+  background: #00cec9;
+  background-image: linear-gradient(45deg,
+      #00cec9 25%,
+      #01c8c3 25%,
+      #01c8c3 75%,
+      #00cec9 75%,
+      #00cec9),
+    linear-gradient(-45deg,
+      #00cec9 25%,
+      #01c8c3 25%,
+      #01c8c3 75%,
+      #00cec9 75%,
+      #00cec9);
+  background-size: 1px 150px;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  line-height: normal;
+  height: 100vh;
 }
 
 /* Pop Up Ramadhan */
 @keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-10%)
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0%)
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 #arlinapuasa2019ku {
-    line-height: 1.55;
-    display: block;
-    background: #fff;
-    position: fixed;
-    top: 25%;
-    right: 0;
-    left: 0;
-    margin: auto;
-    text-align: center;
-    box-shadow: 0 0 2.5rem -1.5rem rgba(0, 0, 0, 0.5);
-    max-width: 600px;
-    z-index: 99;
-    min-height: 325px;
-    padding: 20px;
-    border-radius: 10px;
-    animation: slideDown 2s
+  line-height: 1.55;
+  display: block;
+  background: #fff;
+  position: fixed;
+  top: 25%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 0 2.5rem -1.5rem rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  z-index: 99;
+  min-height: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  animation: slideDown 2s;
 }
 
 #arlinapuasa2019ku .puasa19 {
-    position: absolute;
-    color: #222;
-    font-size: 1.5rem;
-    font-weight: 400;
-    z-index: 99999;
-    text-align: center;
-    margin: auto;
-    padding: 10px;
-    left: 0;
-    right: 0;
-    top: 17%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    border-top: 1px solid rgba(0, 0, 0, 0.05)
-}
-
-#arlinapuasa2019ku .puasa19 p {
-    margin: 10px auto;
-    font-style: italic;
-    font-family: Georgia
+  position: absolute;
+  color: #222;
+  font-size: 1.5rem;
+  font-weight: 400;
+  z-index: 99999;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  left: 0;
+  right: 0;
+  top: 17%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 #arlinapuasa2019ku .puasa19 .ramadhan2019 {
-    font-size: 2.2rem;
-    font-style: normal
+  font-size: 2.2rem;
+  font-style: normal;
+  margin: 10px auto;
+  font-family: Georgia;
+}
+
+#arlinapuasa2019ku .puasa19 .hehehe {
+  font-size: 1.5rem;
+  font-style: normal;
+  margin: 10px auto;
+  font-style: italic;
+  font-family: Georgia;
 }
 
 #arlinapuasa2019ku a.close-popup {
-    background: #428bca;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    z-index: 99;
-    border-radius: 3px;
-    display: inline-block;
-    font-size: 13px;
-    padding: 4px 14px;
-    min-width: 60px;
-    border: 1px solid #3885c7;
-    transition: all 0.3s
+  background: #428bca;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  z-index: 99;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 13px;
+  padding: 4px 14px;
+  min-width: 60px;
+  border: 1px solid #3885c7;
+  transition: all 0.3s;
 }
 
 #arlinapuasa2019ku a.close-popup:hover {
-    background: #fff;
-    color: #3885c7;
-    border-color: #3885c7
+  background: #fff;
+  color: #3885c7;
+  border-color: #3885c7;
 }
 
 #arlinapuasa2019ku a.close-popup:active {
-    opacity: .9
+  opacity: 0.9;
 }
 
 .ketupat {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -12px;
-    margin: auto;
-    width: 10px;
-    height: 10px;
-    background: #B9E937;
-    box-shadow: 10px 0 0 #57D131, 10px 10px 0 #B9E937, 0px 10px 0 #57D131, 5px 5px 0 10px #fff;
-    display: inline-block;
-    text-align: center;
-    transform: rotate(45deg);
-    z-index: 2
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  background: #b9e937;
+  box-shadow: 10px 0 0 #57d131, 10px 10px 0 #b9e937, 0px 10px 0 #57d131,
+    5px 5px 0 10px #fff;
+  display: inline-block;
+  text-align: center;
+  transform: rotate(45deg);
+  z-index: 2;
 }
 
 .ketupat.duaa {
-    top: initial;
-    bottom: 3px
+  top: initial;
+  bottom: 3px;
 }
 
-@media screen and (max-width:768px) {
-    #arlinapuasa2019ku .puasa19 {
-        font-size: 1rem
-    }
+@media screen and (max-width: 415px) {
+  #arlinapuasa2019ku .puasa19 .hehehe {
+    font-size: 1.1rem;
+  }
 
-    #arlinapuasa2019ku .puasa19 .ramadhan2019 {
-        font-size: 1.2rem
-    }
+  #arlinapuasa2019ku .puasa19 .ramadhan2019 {
+    font-size: 1.2rem;
+  }
 
-    #arlinapuasa2019ku {
-        min-height: 260px;
-        left: 20px;
-        right: 20px
-    }
+  #arlinapuasa2019ku {
+    min-height: 330px;
+    left: 20px;
+    right: 20px;
+  }
 }

@@ -6,21 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luthfi Minta Maaf</title>
-    <link href="style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/creativetimofficial/argon-dashboard/assets/css/argon-dashboard.css"
+        rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
     <div id="arlinapuasa2019ku">
         <div class="ketupat"></div>
         <div class="puasa19">
-            <p>Selamat Hari Raya Idul Fitri 1446 H</p>
+            <p class="hehehe">Selamat Hari Raya Idul Fitri 1446 H</p>
             <p>
                 <span class="ramadhan2019">🙏Mohon Maaf Lahir & Batin🙏</span>
             </p>
-            <p>Luthfi A. Ardhani</p>
+            <p class="hehehe">Luthfi A. Ardhani</p>
             <div class="mt-4">
-                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#messageModal">
+                <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#messageModal">
                     💬 Kirim Pesan
                 </button>
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#thrModal">
@@ -33,14 +35,15 @@
 
     <!-- Modal -->
     <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="messageModalLabel">💌 Kirim pesan buat Lutpi 💌</h5>
+                    <h5 class="modal-title" id="messageModalLabel">💌 Kirim pesan buat Luthfi 💌</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" rows="4" placeholder="Tulis apa aja boleh deh 🫣" class="messageInput"></textarea>
+                    <textarea class="form-control" rows="4" placeholder="Tulis apa aja boleh deh 🫣"
+                        class="messageInput" required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Gajadi</button>
@@ -51,25 +54,40 @@
     </div>
 
     <div class="modal fade" id="thrModal" tabindex="-1" aria-labelledby="thrModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="thrModalLabel">🎉 Kirim THR buat Lutpi 🎉</h5>
+                    <h5 class="modal-title" id="thrModalLabel">🎉 Kirim THR buat Luthfi 🎉</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
                     <p>Yuk, kasih THR biar berkah dan makin disayang! 😆✨</p>
                     <p><strong>📲 Gopay & Dana:</strong></p>
-                    <div class="input-group mb-3">
+                    <div class="input-group input-group-lg my-4">
                         <input type="text" class="form-control text-center fw-bold text-primary" value="0857 9186 7132"
                             disabled>
-                        <button class="btn btn-outline-secondary" onclick="copyToClipboard()">📋</button>
+                        <button href="" class="input-group-text" onclick="copyToClipboard()">📋 Copy Nomor</button>
                     </div>
                     <p>Semoga yang ngasih THR rezekinya makin lancar! 😍💸</p>
                 </div>
                 <div class="modal-footer">
                     Kalo udah kirim THR ➡️
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Klik Disini</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="alertTHR()">Klik
+                        Disini</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Global buat Alert -->
+    <div class="modal fade" id="customAlertModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center" id="customAlertBody">
+                    Isi Alert
+                </div>
+                <div class="modal-body d-flex justify-content-end" id="customAlertFooter">
+                    <!-- Tombol bakal di-generate dari JS -->
                 </div>
             </div>
         </div>
