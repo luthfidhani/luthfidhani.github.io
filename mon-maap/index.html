@@ -13,14 +13,12 @@
 </head>
 
 <body>
-    <div id="arlinapuasa2019ku">
+    <div class="popup-container">
         <div class="ketupat"></div>
-        <div class="puasa19">
-            <p class="hehehe">Selamat Hari Raya Idul Fitri 1446 H</p>
-            <p>
-                <span class="ramadhan2019">🙏Mohon Maaf Lahir & Batin🙏</span>
-            </p>
-            <p class="hehehe">Luthfi A. Ardhani</p>
+        <div class="popup-content">
+            <p class="popup-subtitle">Selamat Hari Raya Idul Fitri 1446 H</p>
+            <p><span class="popup-title">🙏Mohon Maaf Lahir & Batin🙏</span></p>
+            <p class="popup-subtitle">Luthfi A. Ardhani</p>
             <div class="mt-4">
                 <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#messageModal">
                     💬 Kirim Pesan
@@ -30,8 +28,9 @@
                 </button>
             </div>
         </div>
-        <div class="ketupat duaa"></div>
+        <div class="ketupat ketupat-bottom"></div>
     </div>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
@@ -47,7 +46,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Gajadi</button>
-                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Kirim</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="sendMessage()">Kirim</button>
                 </div>
             </div>
         </div>
@@ -84,7 +83,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center" id="customAlertBody">
-                    Isi Alert
+                    <!-- Contentnya bakal di-generate dari JS -->
                 </div>
                 <div class="modal-body d-flex justify-content-end" id="customAlertFooter">
                     <!-- Tombol bakal di-generate dari JS -->

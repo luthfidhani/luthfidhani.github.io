@@ -2,7 +2,6 @@ function sendMessage() {
   const message = document.querySelector(".modal-body textarea").value;
 
   if (!message) {
-    // alert("Plis lah isi pesan yang mau dikirim.\nGaboleh kosong dong 🙄");
     showCustomAlert("Plis lah isi pesan yang mau dikirim.\nGaboleh kosong dong 🙄", [
         {
           text: "Iya deh",
@@ -25,7 +24,13 @@ function sendMessage() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: message }),
   });
-  alert("Pesan berhasil terkirim 💌");
+  showCustomAlert("Pesan berhasil terkirim 💌", [
+    {
+      text: "OKEEE 👍",
+      class: "btn-primary",
+      action: () => console.log("Pesan terkirim!")
+    },
+  ]);
 }
 
 function copyToClipboard() {
@@ -74,21 +79,16 @@ function showCustomAlert(
   message,
   buttons = [{ text: "OK", class: "btn-primary", action: null }]
 ) {
-  // Set judul dan isi modal
   document.getElementById("customAlertBody").innerHTML = message;
-
-  // Ambil footer dan hapus semua tombol sebelumnya
   let footer = document.getElementById("customAlertFooter");
   footer.innerHTML = "";
 
-  // Loop tombol yang dikasih di parameter
   buttons.forEach((btn) => {
     let button = document.createElement("button");
     button.className = `btn ${btn.class}`;
     button.innerText = btn.text;
     button.setAttribute("data-bs-dismiss", "modal"); // Default nutup modal
 
-    // Kalau ada action, tambahin event onclick
     if (btn.action) {
       button.onclick = btn.action;
     }

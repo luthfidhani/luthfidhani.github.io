@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i);
 
+/* General Styles */
 a {
   text-decoration: none;
 }
@@ -12,18 +13,22 @@ a {
 
 body {
   background: #00cec9;
-  background-image: linear-gradient(45deg,
+  background-image: linear-gradient(
+      45deg,
       #00cec9 25%,
       #01c8c3 25%,
       #01c8c3 75%,
       #00cec9 75%,
-      #00cec9),
-    linear-gradient(-45deg,
+      #00cec9
+    ),
+    linear-gradient(
+      -45deg,
       #00cec9 25%,
       #01c8c3 25%,
       #01c8c3 75%,
       #00cec9 75%,
-      #00cec9);
+      #00cec9
+    );
   background-size: 1px 150px;
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -33,20 +38,19 @@ body {
   height: 100vh;
 }
 
-/* Pop Up Ramadhan */
+/* 🔥 MODAL POPUP */
 @keyframes slideDown {
   0% {
     opacity: 0;
     transform: translateY(-10%);
   }
-
   100% {
     opacity: 1;
     transform: translateY(0%);
   }
 }
 
-#arlinapuasa2019ku {
+.popup-container {
   line-height: 1.55;
   display: block;
   background: #fff;
@@ -65,12 +69,11 @@ body {
   animation: slideDown 2s;
 }
 
-#arlinapuasa2019ku .puasa19 {
+.popup-content {
   position: absolute;
   color: #222;
   font-size: 1.5rem;
   font-weight: 400;
-  z-index: 99999;
   text-align: center;
   margin: auto;
   padding: 10px;
@@ -81,22 +84,22 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-#arlinapuasa2019ku .puasa19 .ramadhan2019 {
+.popup-title {
   font-size: 2.2rem;
   font-style: normal;
   margin: 10px auto;
-  font-family: Georgia;
+  font-family: Georgia, serif;
 }
 
-#arlinapuasa2019ku .puasa19 .hehehe {
+.popup-subtitle {
   font-size: 1.5rem;
-  font-style: normal;
-  margin: 10px auto;
   font-style: italic;
-  font-family: Georgia;
+  margin: 10px auto;
+  font-family: Georgia, serif;
 }
 
-#arlinapuasa2019ku a.close-popup {
+/* Close Button */
+.popup-close {
   background: #428bca;
   position: absolute;
   bottom: 20px;
@@ -104,7 +107,6 @@ body {
   color: #fff;
   text-align: center;
   cursor: pointer;
-  z-index: 99;
   border-radius: 3px;
   display: inline-block;
   font-size: 13px;
@@ -114,16 +116,17 @@ body {
   transition: all 0.3s;
 }
 
-#arlinapuasa2019ku a.close-popup:hover {
+.popup-close:hover {
   background: #fff;
   color: #3885c7;
   border-color: #3885c7;
 }
 
-#arlinapuasa2019ku a.close-popup:active {
+.popup-close:active {
   opacity: 0.9;
 }
 
+/* Decorative Ketupat */
 .ketupat {
   position: absolute;
   left: 0;
@@ -141,21 +144,36 @@ body {
   z-index: 2;
 }
 
-.ketupat.duaa {
+.ketupat-bottom {
   top: initial;
   bottom: 3px;
 }
 
+@media screen and (max-width: 768px) {
+  .popup-subtitle {
+    font-size: 1rem;
+  }
+  .popup-title {
+    font-size: 1.5rem;
+  }
+  .popup-container {
+    min-height: 260px;
+    left: 20px;
+    right: 20px;
+  }
+}
+
+/* Responsive Design */
 @media screen and (max-width: 415px) {
-  #arlinapuasa2019ku .puasa19 .hehehe {
+  .popup-subtitle {
     font-size: 1.1rem;
   }
 
-  #arlinapuasa2019ku .puasa19 .ramadhan2019 {
+  .popup-title {
     font-size: 1.2rem;
   }
 
-  #arlinapuasa2019ku {
+  .popup-container {
     min-height: 330px;
     left: 20px;
     right: 20px;
