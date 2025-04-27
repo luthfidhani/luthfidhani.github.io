@@ -292,6 +292,32 @@ function profileData() {
         link: "https://github.com/luthfidhani/Klasifikasi-Daging-Sapi-PKL",
         category: ["ML", "Mobile", "Flutter", "Django", "Python"]
       },
+      {
+        image: "assets/img/projects/InviteEase.png",
+        title: {
+          id: "InviteEase",
+          en: "InviteEase"
+        },
+        description: {
+          id: "Sistem check-in tamu yang ringan dan dapat dihosting sendiri. Ideal untuk pernikahan, acara perusahaan, atau tempat mana pun yang membutuhkan meja resepsionis cepat dan tanpa kertas.",
+          en: "A lightweight self-hosted guest check-in system. Ideal for weddings, corporate events, or any place where you need a fast, paper-less reception desk."
+        },
+        link: "https://github.com/luthfidhani/InviteEase",
+        category: ["Django", "Web", "Python", "HTML", "CSS", "JavaScript"]
+      },
+      {
+        image: "assets/img/projects/KasKu.png",
+        title: {
+          id: "KasKu",
+          en: "KasKu"
+        },
+        description: {
+          id: "KasKu adalah bot Telegram berbasis AI yang bantu catat pemasukan dan pengeluaran lewat chat santai. Cukup ngobrol aja, KasKu yang urus dan simpan otomatis ke Google Sheets, sambil kasih candaan atau motivasi biar makin seru! 😎",
+          en: "KasKu is an AI Telegram bot that tracks your income and expenses through casual chat. Just type like chatting with a friend—KasKu handles the rest and saves it to Google Sheets, sprinkled with jokes or motivation!"
+        },
+        link: "https://github.com/luthfidhani/KasKu",
+        category: ["Bot", "Telegram", "Python"]
+      },
     ],
     publications: [
       {
