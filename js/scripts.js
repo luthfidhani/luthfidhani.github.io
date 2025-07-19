@@ -9,8 +9,8 @@ function profileData() {
         en: "Data Engineer"
       },
       description: {
-        id: "Hai! 👋 Saya Luthfi, lulusan Teknik Informatika dan sekarang bekerja sebagai Junior Data Engineer di sebuah startup internasional. Saya tertarik pada Artificial Intelligence (AI) 🤖 dan Data Science (DS) 📊, karena dari data, kita bisa mendapatkan insight, prediksi, dan keputusan penting. Data juga bisa melatih komputer untuk 'berpikir' seperti manusia, itulah yang membuat AI menarik bagi saya!",
-        en: "Hi! 👋 I'm Luthfi, a Computer Science graduate currently working as a Junior Data Engineer at an international startup. I'm interested in Artificial Intelligence (AI) 🤖 and Data Science (DS) 📊, because from data, we can gain insights, predictions, and make important decisions. Data can also train computers to 'think' like humans, which is what makes AI fascinating to me!"
+        id: "Hai! 👋 Saya Luthfi, Data Engineer di Insight Timer dengan passion besar di dunia data dan machine learning. Sehari-hari saya ngoprek pipeline pakai Airflow, dbt, Spark, sampai deploy model ke server. Saya juga suka main di backend (FastAPI is my go-to!) dan percaya bahwa data yang rapi = keputusan yang lebih cerdas. Di luar kerjaan, saya aktif nulis di Medium dan pernah nerbitin buku tentang neural network. Jadi kalau kamu punya ide seru seputar data atau AI—yuk ngobrol!",
+        en: "Hey there! 👋 I'm Luthfi, a Data Engineer at Insight Timer with a big passion for all things data and machine learning. I build and maintain data pipelines with tools like Airflow, dbt, and Spark, and occasionally deploy ML models to production. I'm also into backend development—FastAPI is my jam—and I believe clean data leads to smarter decisions. Outside of work, I write on Medium and once published a book on neural networks. So if you're into data or AI too, let's connect!"
       }
     },
     socmeds: [
@@ -123,6 +123,19 @@ function profileData() {
       ]
     },
     projects: [
+      {
+        image: "assets/img/projects/tic-tac-toe.png",
+        title: {
+          id: "Tic-Tac-Toe Online",
+          en: "Tic-Tac-Toe Online"
+        },
+        description: {
+          id: "Game Tic-Tac-Toe multiplayer online yang dibangun dengan FastAPI, WebSockets, dan Alpine.js. Fitur sistem room dengan ID yang bisa dibagikan, update real-time, dan desain responsif dengan Tailwind CSS.",
+          en: "Multiplayer online Tic-Tac-Toe game built with FastAPI, WebSockets, and Alpine.js. Features room system with shareable IDs, real-time updates, and responsive design with Tailwind CSS."
+        },
+        link: "https://github.com/luthfidhani/tic-tac-toe",
+        category: ["Game", "FastAPI", "WebSocket", "Python", "Alpine.js"]
+      },
       {
         image: "assets/img/projects/InviteEase.png",
         title: {
@@ -341,6 +354,25 @@ function profileData() {
           en: "A study on classifying food and non-food images using transfer learning."
         },
         link: "https://journal.unipdu.ac.id/index.php/teknologi/article/view/2402"
+      }
+    ],
+    books: [
+      {
+        title: {
+          id: "Bahasa Bayi NEURAL NETWORK",
+          en: "Baby Language NEURAL NETWORK"
+        },
+        subtitle: {
+          id: "Rahasia Dibalik AI",
+          en: "Secrets Behind AI"
+        },
+        description: {
+          id: "Buku yang menyederhanakan topik kompleks 'Neural Network' menggunakan 'Bahasa Bayi', membuatnya mudah dipahami dengan analogi sederhana dan tanpa formula rumit. Cocok untuk pemula, mahasiswa, dan siapa saja yang tertarik memahami 'otak' di balik AI dengan cara yang menyenangkan.",
+          en: "A book that simplifies the complex topic of 'Neural Network' using 'Baby Language', making it accessible with simple analogies and without complicated formulas. Perfect for beginners, students, and anyone interested in understanding the 'brain' behind AI in an enjoyable way."
+        },
+        cover: "assets/img/books/neural-network-cover.jpg",
+        link: "https://luthfidhani.my.id/ebook-neural-network/",
+        category: ["AI", "Machine Learning", "Education", "Book"]
       }
     ],
     toggleLanguage() {
