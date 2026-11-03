@@ -229,7 +229,7 @@ function profileData() {
           en: "Secret Management System",
         },
         description: {
-          id: "Sistem manajemen password dan identitas yang aman dengan enkripsi AES-256-GCM. Self-hosted, data tidak pernah meninggalkan perangkat dalam keadaan tidak terenkripsi.",
+          id: "Password dan secret manager self-hosted dengan enkripsi AES-256-GCM. Data nggak pernah keluar dari perangkat dalam kondisi belum terenkripsi.",
           en: "A secure, self-hosted password and identity management system with AES-256-GCM encryption. Your secrets never leave your device unencrypted.",
         },
         link: "https://github.com/luthfidhani/secret-management-system",
@@ -281,7 +281,7 @@ function profileData() {
           en: "InviteEase",
         },
         description: {
-          id: "Sistem check-in tamu yang ringan dan dapat dihosting sendiri. Ideal untuk pernikahan, acara perusahaan, atau tempat mana pun yang membutuhkan meja resepsionis cepat dan tanpa kertas.",
+          id: "Sistem check-in tamu yang ringan dan bisa di-host sendiri. Cocok buat nikahan, acara kantor, atau acara apa pun yang butuh meja tamu cepat tanpa kertas.",
           en: "A lightweight self-hosted guest check-in system. Ideal for weddings, corporate events, or any place where you need a fast, paper-less reception desk.",
         },
         link: "https://github.com/luthfidhani/InviteEase",
@@ -307,7 +307,7 @@ function profileData() {
           en: "Web Spam SMS Classification",
         },
         description: {
-          id: "Web Machine Learning yang dapat digunakan untuk mendeteksi atau mengklasifikasikan isi dari SMS apakah termasuk spam atau tidak.",
+          id: "Web app machine learning untuk mendeteksi apakah sebuah SMS termasuk spam atau bukan.",
           en: "A Machine Learning web app used to detect or classify whether an SMS content is spam or not.",
         },
         link: "https://github.com/luthfidhani/Web-Spam-SMS-Classification-Django",
@@ -320,7 +320,7 @@ function profileData() {
           en: "Al-Quran Information Retrieval",
         },
         description: {
-          id: "Merupakan hasil skripsi saya dengan topik pencarian ayat berdasarkan topik Al-Quran terjemahan bahasa Indonesia.",
+          id: "Proyek skripsi gue: cari ayat berdasarkan topik di Al-Quran terjemahan bahasa Indonesia.",
           en: "My thesis project on verse retrieval based on topics in the Indonesian translation of the Quran.",
         },
         link: "https://github.com/luthfidhani/Al-Quran-Information-Retrieval",
@@ -346,7 +346,7 @@ function profileData() {
           en: "AI Essay Grading System",
         },
         description: {
-          id: "Sistem penilaian esai otomatis menggunakan Python dan OpenAI API untuk membantu guru menilai jawaban murid dengan cepat dan memberikan feedback yang terperinci.",
+          id: "Penilaian esai otomatis pakai Python dan OpenAI API, bantu guru menilai jawaban murid lebih cepat lengkap dengan feedback detail.",
           en: "An automatic essay grading system using Python and OpenAI API to help teachers quickly assess student answers and provide detailed feedback.",
         },
         link: "https://github.com/luthfidhani/AI-essay-grading-system",
@@ -359,7 +359,7 @@ function profileData() {
           en: "Tic-Tac-Toe Online",
         },
         description: {
-          id: "Game Tic-Tac-Toe multiplayer online yang dibangun dengan FastAPI, WebSockets, dan Alpine.js. Fitur sistem room dengan ID yang bisa dibagikan, update real-time, dan desain responsif dengan Tailwind CSS.",
+          id: "Game Tic-Tac-Toe multiplayer online pakai FastAPI, WebSockets, dan Alpine.js. Ada sistem room dengan ID yang bisa dibagikan dan update real-time.",
           en: "Multiplayer online Tic-Tac-Toe game built with FastAPI, WebSockets, and Alpine.js. Features room system with shareable IDs, real-time updates, and responsive design with Tailwind CSS.",
         },
         link: "https://github.com/luthfidhani/tic-tac-toe",
@@ -372,7 +372,7 @@ function profileData() {
           en: "Al-Quran Tafsir & Translation",
         },
         description: {
-          id: "Website Al-Quran Tafsir & Terjemahan untuk memudahkan akses dan pemahaman ayat-ayat Al-Quran.",
+          id: "Website Al-Quran lengkap dengan terjemahan dan tafsir, biar ayat-ayatnya lebih gampang diakses dan dipahami.",
           en: "Al-Quran Tafsir & Translation website to facilitate access and understanding of Quranic verses.",
         },
         link: "https://github.com/luthfidhani/al-quran",
@@ -385,7 +385,7 @@ function profileData() {
           en: "Group Quran Completion",
         },
         description: {
-          id: "Khataman Quran Bersama membantu kelompok untuk menuntaskan Al-Quran dengan menugaskan Juz tertentu kepada setiap anggota.",
+          id: "Bantu kelompok khatam Al-Quran bareng dengan membagi Juz ke tiap anggota, lengkap dengan checklist progres.",
           en: "Group Quran Completion helps groups to complete the Quran by assigning specific Juz to each member.",
         },
         link: "https://github.com/luthfidhani/khataman-quran-bersama",
@@ -407,11 +407,11 @@ function profileData() {
       {
         image: "assets/img/projects/Klasifikasi-Daging-Sapi-PKL.png",
         title: {
-          id: "Klasifikasi Daging Sapi PKL",
+          id: "Klasifikasi Kualitas Daging Sapi",
           en: "Beef Quality Classification",
         },
         description: {
-          id: "Aplikasi mobile yang dapat digunakan untuk mengklasifikasikan daging sapi berdasarkan kualitasnya hanya menggunakan foto.",
+          id: "Aplikasi mobile untuk menilai kualitas daging sapi cukup dari fotonya.",
           en: "A mobile application that can classify beef quality using just a photo.",
         },
         link: "https://github.com/luthfidhani/Klasifikasi-Daging-Sapi-PKL",
@@ -424,7 +424,7 @@ function profileData() {
           en: "Youtube Downloader Bot Telegram",
         },
         description: {
-          id: "Bot Telegram untuk mendownload video atau audio dari Youtube dengan mudah dan cepat.",
+          id: "Bot Telegram buat download video atau audio YouTube dengan cepat.",
           en: "A Telegram bot to easily and quickly download videos or audio from YouTube.",
         },
         link: "https://github.com/luthfidhani/youtube-downloader-bot-telegram-django",
@@ -437,7 +437,7 @@ function profileData() {
           en: "Student Graduation Prediction",
         },
         description: {
-          id: "Aplikasi ini bertujuan untuk memprediksi apakah seorang mahasiswa akan lulus tepat waktu atau tidak berdasarkan data kelulusan mahasiswa.",
+          id: "Prediksi apakah mahasiswa bakal lulus tepat waktu, berdasarkan data kelulusan angkatan sebelumnya.",
           en: "This application aims to predict whether a student will graduate on time based on student graduation data.",
         },
         link: "https://github.com/luthfidhani/prediksi-kelulusan-mahasiswa",
@@ -450,7 +450,7 @@ function profileData() {
           en: "Time Capsule",
         },
         description: {
-          id: "Web sederhana untuk membuat kapsul waktu yang akan terbuka pada tanggal yang ditentukan.",
+          id: "Web buat bikin kapsul waktu yang baru bisa dibuka di tanggal yang kamu tentukan.",
           en: "A simple website to create a time capsule that will open on a specified date.",
         },
         link: "https://github.com/luthfidhani/kapsul-waktu",
@@ -463,7 +463,7 @@ function profileData() {
           en: "Microsoft Training Scoring System",
         },
         description: {
-          id: "Sistem yang melakukan evaluasi terhadap materi pelatihan atau pelatihan yang akan dilaksanakan.",
+          id: "Sistem untuk menilai materi pelatihan dan pelatihan yang akan dijalankan.",
           en: "A system that evaluates training materials or upcoming trainings.",
         },
         link: "https://github.com/luthfidhani/sistem-skoring-pelatihan-microsoft",
@@ -476,7 +476,7 @@ function profileData() {
           en: "SimSimi Chat Bot Telegram",
         },
         description: {
-          id: "Chat Bot Telegram yang menggunakan API SimSimi untuk menjawab pesan pengguna.",
+          id: "Chatbot Telegram yang membalas pesan pakai API SimSimi.",
           en: "A Telegram chat bot that uses the SimSimi API to respond to user messages.",
         },
         link: "https://github.com/luthfidhani/simsimi-chat-bot-telegram",
@@ -489,7 +489,7 @@ function profileData() {
           en: "Check Khodam",
         },
         description: {
-          id: "Web sederhana untuk memeriksa khodam anda berdasarkan nama masukan Anda. Dibuat untuk tujuan bersenang-senang dan belajar.",
+          id: "Web iseng buat ngecek khodam dari nama kamu. Dibikin buat seru-seruan sekalian belajar.",
           en: "A simple website to check your khodam based on your input name. Made for fun and learning purposes.",
         },
         link: "https://github.com/luthfidhani/cek-khodam",

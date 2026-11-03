@@ -15,7 +15,9 @@
             document.documentElement.classList.add("dark");
         }
     </script>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" href="assets/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap"
@@ -30,10 +32,10 @@
         <a class="wordmark" href="#top" aria-label="Luthfi, back to top">Luthfi<span>.</span></a>
 
         <nav class="desktop-nav" aria-label="Primary navigation">
-            <a href="#work" x-text="selectedLanguage === 'id' ? 'Karya' : 'Work'"></a>
-            <a href="#principles" x-text="selectedLanguage === 'id' ? 'Cara kerja' : 'Approach'"></a>
-            <a href="#toolkit" x-text="selectedLanguage === 'id' ? 'Perkakas' : 'Toolkit'"></a>
-            <a href="#writing" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'"></a>
+            <a href="#work" x-text="selectedLanguage === 'id' ? 'Proyek' : 'Work'">Work</a>
+            <a href="#principles" x-text="selectedLanguage === 'id' ? 'Cara Kerja' : 'Approach'">Approach</a>
+            <a href="#toolkit" x-text="selectedLanguage === 'id' ? 'Tools' : 'Toolkit'">Toolkit</a>
+            <a href="#writing" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'">Writing</a>
             <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener">Blog</a>
             <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener">Playground</a>
         </nav>
@@ -51,10 +53,10 @@
         </div>
 
         <nav class="mobile-nav" x-show="menuOpen" x-cloak @click.outside="menuOpen = false">
-            <a href="#work" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Karya' : 'Work'"></a>
-            <a href="#principles" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Cara kerja' : 'Approach'"></a>
-            <a href="#toolkit" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Perkakas' : 'Toolkit'"></a>
-            <a href="#writing" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'"></a>
+            <a href="#work" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Proyek' : 'Work'">Work</a>
+            <a href="#principles" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Cara Kerja' : 'Approach'">Approach</a>
+            <a href="#toolkit" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Tools' : 'Toolkit'">Toolkit</a>
+            <a href="#writing" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'">Writing</a>
             <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener">Blog</a>
             <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener">Playground</a>
         </nav>
@@ -65,60 +67,61 @@
             <div class="hero-copy">
                 <p class="availability">
                     <span></span>
-                    <span x-text="selectedLanguage === 'id' ? 'Data engineer di Insight Timer' : 'Data engineer at Insight Timer'"></span>
+                    <span x-text="selectedLanguage === 'id' ? 'Data engineer di Insight Timer' : 'Data engineer at Insight Timer'">Data engineer at Insight Timer</span>
                 </p>
                 <h1>
-                    <span x-text="selectedLanguage === 'id' ? 'Saya bikin data' : 'I make data'"></span><br>
-                    <span x-text="selectedLanguage === 'id' ? 'lebih berguna.' : 'more useful.'"></span>
+                    <span x-text="selectedLanguage === 'id' ? 'Bikin data' : 'I make data'">I make data</span><br>
+                    <span x-text="selectedLanguage === 'id' ? 'lebih berguna.' : 'more useful.'">more useful.</span>
                 </h1>
                 <p class="hero-intro"
-                    x-text="selectedLanguage === 'id' ? 'Gue Luthfi. Sehari-hari membangun pipeline yang tahan banting, backend yang masuk akal, dan sesekali menerjemahkan topik AI jadi bahasa manusia.' : 'I’m Luthfi. I build dependable data pipelines, sensible backends, and occasionally translate complicated AI topics into human language.'">
+                    x-text="selectedLanguage === 'id' ? 'Gue Luthfi. Sehari-hari bikin data pipeline yang andal, backend yang masuk akal, dan sesekali ngejelasin topik AI yang ribet pakai bahasa manusia.' : 'I’m Luthfi. I build dependable data pipelines, sensible backends, and occasionally translate complicated AI topics into human language.'">
                 </p>
                 <div class="hero-links">
                     <a class="primary-link" href="#work">
-                        <span x-text="selectedLanguage === 'id' ? 'Lihat yang gue buat' : 'See what I build'"></span>
+                        <span x-text="selectedLanguage === 'id' ? 'Lihat proyek gue' : 'See what I build'">See what I build</span>
                     </a>
                     <a class="plain-link" href="mailto:luthfidhani17@gmail.com">
-                        <span x-text="selectedLanguage === 'id' ? 'Ngobrol lewat email' : 'Start a conversation'"></span>
+                        <span x-text="selectedLanguage === 'id' ? 'Ngobrol yuk' : 'Start a conversation'">Start a conversation</span>
                     </a>
                 </div>
             </div>
 
-            <div class="hero-portrait">
+            <div class="hero-portrait" x-data="{ open: false }" :class="{ 'is-open': open }"
+                @click="open = !open" @click.outside="open = false" @keydown.escape.window="open = false"
+                @keydown.enter.prevent="open = !open" role="button" tabindex="0" :aria-expanded="open"
+                :aria-label="selectedLanguage === 'id' ? 'Lihat foto' : 'View photo'">
                 <div class="portrait-frame">
                     <img :src="profile.image" :alt="profile.name"
                         onerror="this.onerror=null;this.src='assets/img/avataaars.svg'">
-                    <span class="portrait-note" x-text="selectedLanguage === 'id' ? 'Jakarta, ID' : 'Based in Jakarta'"></span>
                 </div>
                 <p class="side-note" aria-hidden="true">DATA / SOFTWARE / WRITING</p>
             </div>
         </section>
 
         <section class="manifesto" aria-label="What I do">
-            <p x-text="selectedLanguage === 'id' ? 'Dari data mentah sampai keputusan yang bisa dipakai.' : 'From raw data to decisions people can actually use.'"></p>
+            <p x-text="selectedLanguage === 'id' ? 'Dari data mentah jadi keputusan yang beneran kepake.' : 'From raw data to decisions people can actually use.'"></p>
             <div class="proof-list" aria-label="Portfolio highlights">
                 <div>
                     <strong x-text="projects.length"></strong>
-                    <span x-text="selectedLanguage === 'id' ? 'proyek publik' : 'public projects'"></span>
+                    <span x-text="selectedLanguage === 'id' ? 'proyek publik' : 'public projects'">public projects</span>
                 </div>
                 <div>
                     <strong x-text="publications.length"></strong>
-                    <span x-text="selectedLanguage === 'id' ? 'publikasi' : 'research papers'"></span>
+                    <span x-text="selectedLanguage === 'id' ? 'paper riset' : 'research papers'">research papers</span>
                 </div>
                 <div>
                     <strong x-text="books.length"></strong>
-                    <span x-text="selectedLanguage === 'id' ? 'buku terbit' : 'published book'"></span>
+                    <span x-text="selectedLanguage === 'id' ? 'buku terbit' : 'published book'">published book</span>
                 </div>
             </div>
         </section>
 
         <section id="work" class="section-shell work-section" x-data="{ showAll: false }">
             <div class="section-heading">
-                <h2 x-text="selectedLanguage === 'id' ? 'Pilihan karya' : 'Selected work'"></h2>
+                <h2 x-text="selectedLanguage === 'id' ? 'Proyek pilihan' : 'Selected work'">Selected work</h2>
                 <div>
-                    <p x-text="selectedLanguage === 'id' ? 'Produk kecil, eksperimen, dan alat yang lahir dari masalah nyata. Empat yang pertama adalah titik mulai terbaik.' : 'Small products, experiments, and tools born from real problems. The first four are the best place to start.'"></p>
-                    <a class="section-link" href="https://github.com/luthfidhani" target="_blank" rel="noopener"
-                        x-text="selectedLanguage === 'id' ? 'Lihat profil GitHub ↗' : 'Visit GitHub profile ↗'"></a>
+                    <p x-text="selectedLanguage === 'id' ? 'Produk kecil, eksperimen, dan tools yang lahir dari masalah nyata. Paling enak mulai dari empat teratas.' : 'Small products, experiments, and tools born from real problems. The first four are the best place to start.'"></p>
+                    <a class="section-link" href="https://github.com/luthfidhani" target="_blank" rel="noopener" x-text="selectedLanguage === 'id' ? 'Buka GitHub ↗' : 'Visit GitHub profile ↗'">Visit GitHub profile ↗</a>
                 </div>
             </div>
 
@@ -130,8 +133,7 @@
                             <img :src="project.image" :alt="project.title[selectedLanguage]" loading="lazy">
                         </div>
                         <div class="project-copy">
-                            <span class="project-label" x-show="index < 4"
-                                x-text="selectedLanguage === 'id' ? 'Pilihan' : 'Featured'"></span>
+                            <span class="project-label" x-show="index < 4" x-text="selectedLanguage === 'id' ? 'Unggulan' : 'Featured'">Featured</span>
                             <h3 x-text="project.title[selectedLanguage]"></h3>
                             <p x-text="project.description[selectedLanguage]"></p>
                             <ul aria-label="Technologies">
@@ -146,36 +148,36 @@
             </div>
 
             <button class="show-more" @click="showAll = !showAll">
-                <span x-text="showAll ? (selectedLanguage === 'id' ? 'Tutup arsip proyek' : 'Close project archive') : (selectedLanguage === 'id' ? `Buka arsip: ${projects.length - 4} proyek lainnya` : `Open archive: ${projects.length - 4} more projects`)"></span>
+                <span x-text="showAll ? (selectedLanguage === 'id' ? 'Tutup arsip' : 'Close project archive') : (selectedLanguage === 'id' ? `Lihat ${projects.length - 4} proyek lainnya` : `Open archive: ${projects.length - 4} more projects`)"></span>
                 <span x-text="showAll ? '−' : '+'"></span>
             </button>
         </section>
 
         <section id="principles" class="principles-section">
             <div class="principles-heading">
-                <p x-text="selectedLanguage === 'id' ? 'Cara gue bekerja' : 'How I work'"></p>
-                <h2 x-text="selectedLanguage === 'id' ? 'Sistem yang bagus bukan cuma jalan hari ini.' : 'Good systems should outlive today’s requirements.'"></h2>
+                <p x-text="selectedLanguage === 'id' ? 'Cara gue kerja' : 'How I work'">How I work</p>
+                <h2 x-text="selectedLanguage === 'id' ? 'Sistem yang bagus nggak cuma jalan buat hari ini.' : 'Good systems should outlive today’s requirements.'"></h2>
             </div>
             <div class="principle-list">
                 <article>
-                    <h3 x-text="selectedLanguage === 'id' ? 'Andal sebelum canggih' : 'Reliable before clever'"></h3>
-                    <p x-text="selectedLanguage === 'id' ? 'Pipeline yang mudah dipantau dan dipulihkan selalu menang dari solusi pintar yang rapuh.' : 'A pipeline that is observable and recoverable beats a clever but fragile solution.'"></p>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Andal dulu, baru canggih' : 'Reliable before clever'">Reliable before clever</h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Pipeline yang gampang dipantau dan dipulihkan selalu menang dari solusi pintar tapi rapuh.' : 'A pipeline that is observable and recoverable beats a clever but fragile solution.'"></p>
                 </article>
                 <article>
-                    <h3 x-text="selectedLanguage === 'id' ? 'Jelas untuk orang berikutnya' : 'Clear for the next person'"></h3>
-                    <p x-text="selectedLanguage === 'id' ? 'Kode, model data, dan keputusan teknis harus bisa dipahami tanpa arkeologi berjam-jam.' : 'Code, data models, and technical decisions should not require hours of archaeology.'"></p>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Jelas buat yang nerusin' : 'Clear for the next person'">Clear for the next person</h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Kode, model data, dan keputusan teknis harus bisa dipahami tanpa harus gali-gali berjam-jam.' : 'Code, data models, and technical decisions should not require hours of archaeology.'"></p>
                 </article>
                 <article>
-                    <h3 x-text="selectedLanguage === 'id' ? 'Mulai kecil, kirim, pelajari' : 'Start small, ship, learn'"></h3>
-                    <p x-text="selectedLanguage === 'id' ? 'Validasi kebutuhan paling penting dulu, lalu tambah kompleksitas hanya ketika memang dibutuhkan.' : 'Validate the important need first, then add complexity only when it earns its place.'"></p>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Mulai kecil, rilis, belajar' : 'Start small, ship, learn'">Start small, ship, learn</h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Validasi kebutuhan yang paling penting dulu, tambah kompleksitas cuma kalau memang perlu.' : 'Validate the important need first, then add complexity only when it earns its place.'"></p>
                 </article>
             </div>
         </section>
 
         <section id="toolkit" class="toolkit-section">
             <div class="toolkit-intro">
-                <h2 x-text="selectedLanguage === 'id' ? 'Yang ada di meja kerja' : 'What’s on my workbench'"></h2>
-                <p x-text="selectedLanguage === 'id' ? 'Teknologi cuma alat. Ini yang paling sering gue pakai untuk memindahkan data, melatih model, menjalankan sistem, dan mengirim produk.' : 'Technology is just a tool. These are the ones I reach for to move data, train models, run systems, and ship products.'"></p>
+                <h2 x-text="selectedLanguage === 'id' ? 'Tools andalan gue' : 'What’s on my workbench'">What’s on my workbench</h2>
+                <p x-text="selectedLanguage === 'id' ? 'Teknologi cuma alat. Ini yang paling sering gue pakai buat mindahin data, melatih model, ngejalanin sistem, dan ngirim produk.' : 'Technology is just a tool. These are the ones I reach for to move data, train models, run systems, and ship products.'"></p>
             </div>
 
             <div class="skill-groups">
@@ -185,7 +187,7 @@
                         <ul>
                             <template x-for="skill in items" :key="skill.alt">
                                 <li>
-                                    <img :src="skill.image" :alt="" loading="lazy">
+                                    <img :src="skill.image" alt="" loading="lazy">
                                     <span x-text="skill.alt"></span>
                                 </li>
                             </template>
@@ -197,15 +199,15 @@
 
         <section id="writing" class="section-shell writing-section">
             <div class="section-heading">
-                <h2 x-text="selectedLanguage === 'id' ? 'Catatan & publikasi' : 'Notes & publications'"></h2>
-                <p x-text="selectedLanguage === 'id' ? 'Menulis adalah cara gue merapikan pikiran.' : 'Writing is how I tidy up my thinking.'"></p>
+                <h2 x-text="selectedLanguage === 'id' ? 'Tulisan & publikasi' : 'Notes & publications'">Notes & publications</h2>
+                <p x-text="selectedLanguage === 'id' ? 'Nulis itu cara gue ngerapiin isi kepala.' : 'Writing is how I tidy up my thinking.'"></p>
             </div>
 
             <div class="writing-grid">
                 <div class="publication-list">
                     <template x-for="pub in publications" :key="pub.link">
                         <a :href="pub.link" target="_blank" rel="noopener">
-                            <span x-text="selectedLanguage === 'id' ? 'Jurnal' : 'Research paper'"></span>
+                            <span x-text="selectedLanguage === 'id' ? 'Paper riset' : 'Research paper'">Research paper</span>
                             <h3 x-text="pub.title[selectedLanguage]"></h3>
                             <p x-text="pub.description[selectedLanguage]"></p>
                         </a>
@@ -216,10 +218,10 @@
                     <a class="book-feature" :href="book.link" target="_blank" rel="noopener">
                         <img :src="book.cover" :alt="book.title[selectedLanguage]" loading="lazy">
                         <div>
-                            <span x-text="selectedLanguage === 'id' ? 'Buku' : 'Book'"></span>
+                            <span x-text="selectedLanguage === 'id' ? 'Buku' : 'Book'">Book</span>
                             <h3 x-text="book.title[selectedLanguage]"></h3>
                             <p x-text="book.subtitle[selectedLanguage]"></p>
-                            <strong x-text="selectedLanguage === 'id' ? 'Baca bukunya ↗' : 'Read the book ↗'"></strong>
+                            <strong x-text="selectedLanguage === 'id' ? 'Baca bukunya ↗' : 'Read the book ↗'">Read the book ↗</strong>
                         </div>
                     </a>
                 </template>
@@ -228,16 +230,15 @@
 
         <section class="contact-section">
             <p x-text="selectedLanguage === 'id' ? 'Punya data berantakan atau ide yang belum jadi?' : 'Messy data or an idea that needs building?'"></p>
-            <a href="mailto:luthfidhani17@gmail.com"
-                x-text="selectedLanguage === 'id' ? 'Ceritain ke gue.' : 'Tell me about it.'"></a>
-            <span x-text="selectedLanguage === 'id' ? 'Terbuka untuk ngobrol soal data engineering, sistem backend, dan kolaborasi yang menarik.' : 'Open to conversations about data engineering, backend systems, and interesting collaborations.'"></span>
+            <a href="mailto:luthfidhani17@gmail.com" x-text="selectedLanguage === 'id' ? 'Ceritain aja.' : 'Tell me about it.'">Tell me about it.</a>
+            <span x-text="selectedLanguage === 'id' ? 'Terbuka buat ngobrol soal data engineering, sistem backend, dan kolaborasi yang seru.' : 'Open to conversations about data engineering, backend systems, and interesting collaborations.'"></span>
         </section>
     </main>
 
     <footer>
         <div>
             <strong>Luthfi Afrizal Ardhani</strong>
-            <span x-text="selectedLanguage === 'id' ? 'Data engineer yang suka bikin sesuatu.' : 'A data engineer who likes making things.'"></span>
+            <span x-text="selectedLanguage === 'id' ? 'Data engineer yang hobi bikin sesuatu.' : 'A data engineer who likes making things.'">A data engineer who likes making things.</span>
         </div>
         <div class="social-links">
             <template x-for="social in socmeds" :key="social.name">
