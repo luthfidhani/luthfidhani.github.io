@@ -1,6 +1,8 @@
 function profileData() {
   return {
-    selectedLanguage: "en", // 'id' untuk Indonesia, 'en' untuk Inggris
+    selectedLanguage:
+      localStorage.getItem("language") ||
+      (navigator.language.toLowerCase().startsWith("id") ? "id" : "en"),
     profile: {
       image: "assets/img/profile.jpg",
       name: "Luthfi Afrizal Ardhani",
@@ -41,40 +43,18 @@ function profileData() {
       },
     ],
     skills: {
-      frameworks: [
-        {
-          image: "assets/img/skils/django.png",
-          alt: "django",
-        },
-        {
-          image: "assets/img/skils/fastapi.png",
-          alt: "fastapi",
-        },
-        {
-          image: "assets/img/skils/tensorflow.png",
-          alt: "tensorflow",
-        },
-        {
-          image: "assets/img/skils/alpine-js.png",
-          alt: "alpine-js",
-        },
-      ],
       dataEngineering: [
         {
+          image: "assets/img/skils/googlebigquery.svg",
+          alt: "BigQuery",
+        },
+        {
+          image: "assets/img/skils/duckdb.png",
+          alt: "DuckDB",
+        },
+        {
           image: "assets/img/skils/airflow.png",
-          alt: "airflow",
-        },
-        {
-          image: "assets/img/skils/sql.png",
-          alt: "sql",
-        },
-        {
-          image: "assets/img/skils/mongodb.png",
-          alt: "mongodb",
-        },
-        {
-          image: "assets/img/skils/tableau.png",
-          alt: "tableau",
+          alt: "Airflow",
         },
         {
           image: "assets/img/skils/dbt.png",
@@ -82,47 +62,166 @@ function profileData() {
         },
         {
           image: "assets/img/skils/pyspark.png",
-          alt: "pyspark",
+          alt: "PySpark",
         },
         {
           image: "assets/img/skils/apache-beam.png",
-          alt: "apache beam",
+          alt: "Apache Beam",
+        },
+        {
+          image: "assets/img/skils/googlepubsub.svg",
+          alt: "Pub/Sub",
+        },
+        {
+          image: "assets/img/skils/looker.svg",
+          alt: "Looker",
+        },
+        {
+          image: "assets/img/skils/sql.png",
+          alt: "SQL",
+        },
+      ],
+      mlAi: [
+        {
+          image: "assets/img/skils/tensorflow.png",
+          alt: "TensorFlow",
+        },
+        {
+          image: "assets/img/skils/pytorch.svg",
+          alt: "PyTorch",
+        },
+        {
+          image: "assets/img/skils/scikitlearn.svg",
+          alt: "scikit-learn",
+        },
+        {
+          image: "assets/img/skils/mlflow.svg",
+          alt: "MLflow",
+        },
+        {
+          image: "assets/img/skils/feast.png",
+          alt: "Feast",
+        },
+        {
+          image: "assets/img/skils/lancedb.png",
+          alt: "LanceDB",
+        },
+        {
+          image: "assets/img/skils/googlecloud.svg",
+          alt: "Vertex AI",
+        },
+        {
+          image: "assets/img/skils/claude.svg",
+          alt: "Claude API",
+        },
+        {
+          image: "assets/img/skils/googlegemini.svg",
+          alt: "Gemini",
+        },
+        {
+          image: "assets/img/skils/modelcontextprotocol.svg",
+          alt: "MCP",
+        },
+      ],
+      backendApps: [
+        {
+          image: "assets/img/skils/fastapi.png",
+          alt: "FastAPI",
+        },
+        {
+          image: "assets/img/skils/django.png",
+          alt: "Django",
+        },
+        {
+          image: "assets/img/skils/flask.svg",
+          alt: "Flask",
+        },
+      ],
+      cloudDevOps: [
+        {
+          image: "assets/img/skils/gcp.png",
+          alt: "GCP",
+        },
+        {
+          image: "assets/img/skils/docker.png",
+          alt: "Docker",
+        },
+        {
+          image: "assets/img/skils/kubernetes.png",
+          alt: "Kubernetes",
+        },
+        {
+          image: "assets/img/skils/helm.svg",
+          alt: "Helm",
+        },
+        {
+          image: "assets/img/skils/argo.svg",
+          alt: "Argo CD",
+        },
+        {
+          image: "assets/img/skils/terraform.png",
+          alt: "Terraform",
+        },
+        {
+          image: "assets/img/skils/prometheus.svg",
+          alt: "Prometheus",
         },
         {
           image: "assets/img/skils/redis.png",
           alt: "Redis",
         },
       ],
-      cloudDevOps: [
-        {
-          image: "assets/img/skils/gcp.png",
-          alt: "gcp",
-        },
-        {
-          image: "assets/img/skils/docker.png",
-          alt: "docker",
-        },
-        {
-          image: "assets/img/skils/kubernetes.png",
-          alt: "kubernetes",
-        },
-        {
-          image: "assets/img/skils/terraform.png",
-          alt: "terraform",
-        },
-      ],
       programmingLanguages: [
         {
           image: "assets/img/skils/python.png",
-          alt: "python",
+          alt: "Python",
         },
         {
           image: "assets/img/skils/javascript.png",
-          alt: "javascript",
+          alt: "JavaScript",
         },
       ],
     },
     projects: [
+      {
+        image: "assets/img/projects/treedeck.png",
+        title: {
+          id: "TreeDeck",
+          en: "TreeDeck",
+        },
+        description: {
+          id: "Ekstensi VS Code dan Cursor untuk mengelola git worktree: lihat, diff, buat, hapus, dan bandingkan worktree dari satu panel sidebar. Cocok untuk menjalankan beberapa AI coding agent secara paralel.",
+          en: "A VS Code and Cursor extension for managing git worktrees: list, diff, create, remove and compare worktrees from one sidebar panel. Built for running parallel AI coding agents.",
+        },
+        link: "https://github.com/luthfidhani/treedeck",
+        category: ["VS Code Extension", "TypeScript", "Git", "Developer Tools"],
+      },
+      {
+        image: "assets/img/projects/mac-security-alarm.png",
+        title: {
+          id: "Mac Security Alarm",
+          en: "Mac Security Alarm",
+        },
+        description: {
+          id: "Aplikasi menu bar macOS yang mengirim notifikasi Telegram beserta foto dan membunyikan alarm saat charger dicabut, layar ditutup, sleep, atau shutdown.",
+          en: "A macOS menu bar security alarm that sends Telegram alerts with photos and sounds a loud alarm when the charger is unplugged, the lid closes, or the Mac sleeps or shuts down.",
+        },
+        link: "https://github.com/luthfidhani/mac-security-alarm",
+        category: ["macOS", "Swift", "SwiftUI", "Telegram"],
+      },
+      {
+        image: "assets/img/projects/photo-watermarker.png",
+        title: {
+          id: "Markly",
+          en: "Markly",
+        },
+        description: {
+          id: "Editor watermark foto yang mengutamakan privasi: berjalan sepenuhnya di browser, mendukung batch export dan PWA, foto tidak pernah meninggalkan perangkat.",
+          en: "A privacy-first photo watermark editor that runs entirely in the browser, with batch export and PWA support. Photos never leave your device.",
+        },
+        link: "https://github.com/luthfidhani/photo-watermarker",
+        category: ["Web", "PWA", "TypeScript", "Privacy"],
+      },
       {
         image: "assets/img/projects/secret-management-system.png",
         title: {
@@ -137,17 +236,43 @@ function profileData() {
         category: ["Security", "Flask", "Python", "Self-Hosted"],
       },
       {
-        image: "assets/img/projects/tic-tac-toe.png",
+        image: "assets/img/projects/tabspan.svg",
         title: {
-          id: "Tic-Tac-Toe Online",
-          en: "Tic-Tac-Toe Online",
+          id: "TabSpan",
+          en: "TabSpan",
         },
         description: {
-          id: "Game Tic-Tac-Toe multiplayer online yang dibangun dengan FastAPI, WebSockets, dan Alpine.js. Fitur sistem room dengan ID yang bisa dibagikan, update real-time, dan desain responsif dengan Tailwind CSS.",
-          en: "Multiplayer online Tic-Tac-Toe game built with FastAPI, WebSockets, and Alpine.js. Features room system with shareable IDs, real-time updates, and responsive design with Tailwind CSS.",
+          id: "Client Android untuk Spanly yang ditulis dari nol: jadikan tablet sebagai layar kedua Mac lewat USB accessory, plus perbaikan flow-control dan ketajaman di sisi host.",
+          en: "An Android client for Spanly written from scratch: use a tablet as a second display for a Mac over USB accessory, plus flow-control and sharpness fixes to the host.",
         },
-        link: "https://github.com/luthfidhani/tic-tac-toe",
-        category: ["Game", "FastAPI", "WebSocket", "Python", "Alpine.js"],
+        link: "https://github.com/luthfidhani/tabspan",
+        category: ["Android", "Kotlin", "C++", "USB"],
+      },
+      {
+        image: "assets/img/projects/im3-quota-monitor.png",
+        title: {
+          id: "IM3 Quota Monitor",
+          en: "IM3 Quota Monitor",
+        },
+        description: {
+          id: "Aplikasi menu bar macOS untuk memantau sisa kuota data Indosat IM3, memakai API web portal hasil reverse-engineering.",
+          en: "A macOS menu bar app that shows your remaining Indosat IM3 data quota, built on a reverse-engineered web portal API.",
+        },
+        link: "https://github.com/luthfidhani/im3-quota-monitor",
+        category: ["macOS", "Python", "Reverse Engineering"],
+      },
+      {
+        image: "assets/img/projects/barang-ku.svg",
+        title: {
+          id: "BarangKu",
+          en: "BarangKu",
+        },
+        description: {
+          id: "Aplikasi inventaris rumah: catat barang, pembelian, garansi, dan riwayat servis. Dibangun dengan FastAPI, PostgreSQL, dan frontend Astro.",
+          en: "A home inventory app for items, purchases, warranties and repair history. Built with FastAPI, PostgreSQL and an Astro frontend.",
+        },
+        link: "https://github.com/luthfidhani/barang-ku",
+        category: ["FastAPI", "PostgreSQL", "Astro", "Docker"],
       },
       {
         image: "assets/img/projects/InviteEase.png",
@@ -176,17 +301,43 @@ function profileData() {
         category: ["Bot", "Telegram", "Python"],
       },
       {
-        image: "assets/img/projects/al-quran.png",
+        image: "assets/img/projects/Web-Spam-SMS-Classification-Django.png",
         title: {
-          id: "Al-Quran Tafsir & Terjemahan",
-          en: "Al-Quran Tafsir & Translation",
+          id: "Web Spam SMS Classification",
+          en: "Web Spam SMS Classification",
         },
         description: {
-          id: "Website Al-Quran Tafsir & Terjemahan untuk memudahkan akses dan pemahaman ayat-ayat Al-Quran.",
-          en: "Al-Quran Tafsir & Translation website to facilitate access and understanding of Quranic verses.",
+          id: "Web Machine Learning yang dapat digunakan untuk mendeteksi atau mengklasifikasikan isi dari SMS apakah termasuk spam atau tidak.",
+          en: "A Machine Learning web app used to detect or classify whether an SMS content is spam or not.",
         },
-        link: "https://github.com/luthfidhani/al-quran",
-        category: ["Web", "API", "HTML", "JavaScript"],
+        link: "https://github.com/luthfidhani/Web-Spam-SMS-Classification-Django",
+        category: ["ML", "Web", "Django", "Python"],
+      },
+      {
+        image: "assets/img/projects/Al-Quran-Information-Retrieval.png",
+        title: {
+          id: "Al-Quran Information Retrieval",
+          en: "Al-Quran Information Retrieval",
+        },
+        description: {
+          id: "Merupakan hasil skripsi saya dengan topik pencarian ayat berdasarkan topik Al-Quran terjemahan bahasa Indonesia.",
+          en: "My thesis project on verse retrieval based on topics in the Indonesian translation of the Quran.",
+        },
+        link: "https://github.com/luthfidhani/Al-Quran-Information-Retrieval",
+        category: ["ML", "Web", "Django", "Python"],
+      },
+      {
+        image: "assets/img/projects/home-asset-and-service-tracker.svg",
+        title: {
+          id: "Home Asset & Service Tracker",
+          en: "Home Asset & Service Tracker",
+        },
+        description: {
+          id: "Aplikasi pribadi untuk mengelola aset rumah: garansi, riwayat servis, dan riwayat penjualan dengan perhitungan untung/rugi.",
+          en: "A personal app for tracking home assets, warranties, service records and sales history with profit/loss calculation.",
+        },
+        link: "https://github.com/luthfidhani/home-asset-and-service-tracker",
+        category: ["Web", "Astro", "Supabase"],
       },
       {
         image: "assets/img/projects/AI-essay-grading-system.png",
@@ -202,6 +353,32 @@ function profileData() {
         category: ["AI", "ChatGPT", "Python"],
       },
       {
+        image: "assets/img/projects/tic-tac-toe.png",
+        title: {
+          id: "Tic-Tac-Toe Online",
+          en: "Tic-Tac-Toe Online",
+        },
+        description: {
+          id: "Game Tic-Tac-Toe multiplayer online yang dibangun dengan FastAPI, WebSockets, dan Alpine.js. Fitur sistem room dengan ID yang bisa dibagikan, update real-time, dan desain responsif dengan Tailwind CSS.",
+          en: "Multiplayer online Tic-Tac-Toe game built with FastAPI, WebSockets, and Alpine.js. Features room system with shareable IDs, real-time updates, and responsive design with Tailwind CSS.",
+        },
+        link: "https://github.com/luthfidhani/tic-tac-toe",
+        category: ["Game", "FastAPI", "WebSocket", "Python", "Alpine.js"],
+      },
+      {
+        image: "assets/img/projects/al-quran.png",
+        title: {
+          id: "Al-Quran Tafsir & Terjemahan",
+          en: "Al-Quran Tafsir & Translation",
+        },
+        description: {
+          id: "Website Al-Quran Tafsir & Terjemahan untuk memudahkan akses dan pemahaman ayat-ayat Al-Quran.",
+          en: "Al-Quran Tafsir & Translation website to facilitate access and understanding of Quranic verses.",
+        },
+        link: "https://github.com/luthfidhani/al-quran",
+        category: ["Web", "API", "HTML", "JavaScript"],
+      },
+      {
         image: "assets/img/projects/khataman-quran-bersama.png",
         title: {
           id: "Khataman Quran Bersama",
@@ -215,30 +392,30 @@ function profileData() {
         category: ["Web", "HTML", "CSS", "JavaScript"],
       },
       {
-        image: "assets/img/projects/prediksi-kelulusan-mahasiswa.png",
+        image: "assets/img/projects/noise-detector.png",
         title: {
-          id: "Prediksi Kelulusan Mahasiswa",
-          en: "Student Graduation Prediction",
+          id: "Noise Detector",
+          en: "Noise Detector",
         },
         description: {
-          id: "Aplikasi ini bertujuan untuk memprediksi apakah seorang mahasiswa akan lulus tepat waktu atau tidak berdasarkan data kelulusan mahasiswa.",
-          en: "This application aims to predict whether a student will graduate on time based on student graduation data.",
+          id: "Aplikasi web untuk memantau tingkat kebisingan secara real-time dengan gauge setengah lingkaran, memakai Web Audio API.",
+          en: "A real-time ambient noise monitor with a semicircular dB gauge, built on the Web Audio API.",
         },
-        link: "https://github.com/luthfidhani/prediksi-kelulusan-mahasiswa",
-        category: ["ML", "Flask", "Python"],
+        link: "https://github.com/luthfidhani/noise-detector",
+        category: ["Web", "Web Audio API", "Alpine.js"],
       },
       {
-        image: "assets/img/projects/cek-khodam.png",
+        image: "assets/img/projects/Klasifikasi-Daging-Sapi-PKL.png",
         title: {
-          id: "Check Khodam",
-          en: "Check Khodam",
+          id: "Klasifikasi Daging Sapi PKL",
+          en: "Beef Quality Classification",
         },
         description: {
-          id: "Web sederhana untuk memeriksa khodam anda berdasarkan nama masukan Anda. Dibuat untuk tujuan bersenang-senang dan belajar.",
-          en: "A simple website to check your khodam based on your input name. Made for fun and learning purposes.",
+          id: "Aplikasi mobile yang dapat digunakan untuk mengklasifikasikan daging sapi berdasarkan kualitasnya hanya menggunakan foto.",
+          en: "A mobile application that can classify beef quality using just a photo.",
         },
-        link: "https://github.com/luthfidhani/cek-khodam",
-        category: ["Web", "HTML", "CSS", "JavaScript"],
+        link: "https://github.com/luthfidhani/Klasifikasi-Daging-Sapi-PKL",
+        category: ["ML", "Mobile", "Flutter", "Django", "Python"],
       },
       {
         image: "assets/img/projects/youtube-downloader-bot-telegram-django.png",
@@ -252,6 +429,19 @@ function profileData() {
         },
         link: "https://github.com/luthfidhani/youtube-downloader-bot-telegram-django",
         category: ["API", "Bot", "Telegram", "Django", "Python"],
+      },
+      {
+        image: "assets/img/projects/prediksi-kelulusan-mahasiswa.png",
+        title: {
+          id: "Prediksi Kelulusan Mahasiswa",
+          en: "Student Graduation Prediction",
+        },
+        description: {
+          id: "Aplikasi ini bertujuan untuk memprediksi apakah seorang mahasiswa akan lulus tepat waktu atau tidak berdasarkan data kelulusan mahasiswa.",
+          en: "This application aims to predict whether a student will graduate on time based on student graduation data.",
+        },
+        link: "https://github.com/luthfidhani/prediksi-kelulusan-mahasiswa",
+        category: ["ML", "Flask", "Python"],
       },
       {
         image: "assets/img/projects/kapsul-waktu.png",
@@ -280,19 +470,6 @@ function profileData() {
         category: ["ML", "Web", "Django", "Python"],
       },
       {
-        image: "assets/img/projects/anonymous-chat-bot-telegram-django.png",
-        title: {
-          id: "Anonymous Chat Bot Telegram",
-          en: "Anonymous Chat Bot Telegram",
-        },
-        description: {
-          id: "Chat Bot Telegram yang memungkinkan pengguna untuk berkirim pesan dengan stranger secara random tanpa mengetahui identitasnya.",
-          en: "A Telegram chat bot that allows users to send messages with random strangers anonymously.",
-        },
-        link: "https://github.com/luthfidhani/anonymous-chat-bot-telegram-django",
-        category: ["Bot", "Telegram", "Django", "Python"],
-      },
-      {
         image: "assets/img/projects/simsimi-chat-bot-telegram.png",
         title: {
           id: "SimSimi Chat Bot Telegram",
@@ -306,43 +483,17 @@ function profileData() {
         category: ["Bot", "Telegram", "API", "Flask", "Python"],
       },
       {
-        image: "assets/img/projects/Al-Quran-Information-Retrieval.png",
+        image: "assets/img/projects/cek-khodam.png",
         title: {
-          id: "Al-Quran Information Retrieval",
-          en: "Al-Quran Information Retrieval",
+          id: "Check Khodam",
+          en: "Check Khodam",
         },
         description: {
-          id: "Merupakan hasil skripsi saya dengan topik pencarian ayat berdasarkan topik Al-Quran terjemahan bahasa Indonesia.",
-          en: "My thesis project on verse retrieval based on topics in the Indonesian translation of the Quran.",
+          id: "Web sederhana untuk memeriksa khodam anda berdasarkan nama masukan Anda. Dibuat untuk tujuan bersenang-senang dan belajar.",
+          en: "A simple website to check your khodam based on your input name. Made for fun and learning purposes.",
         },
-        link: "https://github.com/luthfidhani/Al-Quran-Information-Retrieval",
-        category: ["ML", "Web", "Django", "Python"],
-      },
-      {
-        image: "assets/img/projects/Web-Spam-SMS-Classification-Django.png",
-        title: {
-          id: "Web Spam SMS Classification",
-          en: "Web Spam SMS Classification",
-        },
-        description: {
-          id: "Web Machine Learning yang dapat digunakan untuk mendeteksi atau mengklasifikasikan isi dari SMS apakah termasuk spam atau tidak.",
-          en: "A Machine Learning web app used to detect or classify whether an SMS content is spam or not.",
-        },
-        link: "https://github.com/luthfidhani/Web-Spam-SMS-Classification-Django",
-        category: ["ML", "Web", "Django", "Python"],
-      },
-      {
-        image: "assets/img/projects/Klasifikasi-Daging-Sapi-PKL.png",
-        title: {
-          id: "Klasifikasi Daging Sapi PKL",
-          en: "Beef Quality Classification",
-        },
-        description: {
-          id: "Aplikasi mobile yang dapat digunakan untuk mengklasifikasikan daging sapi berdasarkan kualitasnya hanya menggunakan foto.",
-          en: "A mobile application that can classify beef quality using just a photo.",
-        },
-        link: "https://github.com/luthfidhani/Klasifikasi-Daging-Sapi-PKL",
-        category: ["ML", "Mobile", "Flutter", "Django", "Python"],
+        link: "https://github.com/luthfidhani/cek-khodam",
+        category: ["Web", "HTML", "CSS", "JavaScript"],
       },
     ],
     publications: [
@@ -390,16 +541,21 @@ function profileData() {
     ],
     toggleLanguage() {
       this.selectedLanguage = this.selectedLanguage === "id" ? "en" : "id";
+      localStorage.setItem("language", this.selectedLanguage);
     },
     formatCategoryName(name) {
       const categoryNames = {
-        frameworks: {
-          id: "Frameworks",
-          en: "Frameworks",
-        },
         dataEngineering: {
           id: "Data Engineering",
           en: "Data Engineering",
+        },
+        mlAi: {
+          id: "ML & AI",
+          en: "ML & AI",
+        },
+        backendApps: {
+          id: "Backend",
+          en: "Backend",
         },
         cloudDevOps: {
           id: "Cloud & DevOps",

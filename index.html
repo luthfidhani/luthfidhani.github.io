@@ -1,517 +1,252 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ ...profileData(), darkMode: localStorage.getItem('darkMode') === 'true' }"
-    :class="{ 'dark': darkMode }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))">
+<html lang="en" x-data="{ ...profileData(), darkMode: localStorage.theme ? localStorage.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches, menuOpen: false }"
+    :class="{ dark: darkMode }"
+    x-init="document.documentElement.lang = selectedLanguage; $watch('darkMode', value => localStorage.theme = value ? 'dark' : 'light'); $watch('selectedLanguage', value => { localStorage.language = value; document.documentElement.lang = value })">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luthfi Afrizal Ardhani - Data Engineer</title>
-    <meta name="description" content="Personal portfolio of Luthfi Afrizal Ardhani - Data Engineer at Insight Timer">
+    <meta name="theme-color" content="#1257ff">
+    <title>Luthfi Afrizal Ardhani — Data Engineer</title>
+    <meta name="description"
+        content="Luthfi Afrizal Ardhani is a data engineer who builds reliable pipelines, useful software, and approachable writing about technology.">
+    <script>
+        if (localStorage.theme === "dark" || (!localStorage.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+        }
+    </script>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind.config.js"></script>
-
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body
-    class="font-sans bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-500 noise-bg relative overflow-x-hidden">
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="Luthfi, back to top">Luthfi<span>.</span></a>
 
-    <!-- Background decorations -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div
-            class="absolute -top-40 -right-40 w-96 h-96 bg-primary-400/20 dark:bg-primary-500/10 rounded-full blur-3xl">
+        <nav class="desktop-nav" aria-label="Primary navigation">
+            <a href="#work" x-text="selectedLanguage === 'id' ? 'Karya' : 'Work'"></a>
+            <a href="#principles" x-text="selectedLanguage === 'id' ? 'Cara kerja' : 'Approach'"></a>
+            <a href="#toolkit" x-text="selectedLanguage === 'id' ? 'Perkakas' : 'Toolkit'"></a>
+            <a href="#writing" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'"></a>
+            <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener">Blog</a>
+            <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener">Playground</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="text-button" @click="toggleLanguage()" :aria-label="selectedLanguage === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'">
+                <span x-text="selectedLanguage === 'id' ? 'EN' : 'ID'"></span>
+            </button>
+            <button class="icon-button" @click="darkMode = !darkMode" aria-label="Toggle color theme">
+                <i class="fa-solid" :class="darkMode ? 'fa-sun' : 'fa-moon'"></i>
+            </button>
+            <button class="menu-button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Open menu">
+                <span></span><span></span>
+            </button>
         </div>
-        <div class="absolute top-1/3 -left-40 w-80 h-80 bg-accent-400/20 dark:bg-accent-500/10 rounded-full blur-3xl">
-        </div>
-        <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-pink-400/20 dark:bg-pink-500/10 rounded-full blur-3xl">
-        </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="glass rounded-2xl px-6 py-3 flex items-center justify-between">
-                <a href="#" class="text-xl font-bold gradient-text">LA</a>
+        <nav class="mobile-nav" x-show="menuOpen" x-cloak @click.outside="menuOpen = false">
+            <a href="#work" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Karya' : 'Work'"></a>
+            <a href="#principles" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Cara kerja' : 'Approach'"></a>
+            <a href="#toolkit" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Perkakas' : 'Toolkit'"></a>
+            <a href="#writing" @click="menuOpen = false" x-text="selectedLanguage === 'id' ? 'Tulisan' : 'Writing'"></a>
+            <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener">Blog</a>
+            <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener">Playground</a>
+        </nav>
+    </header>
 
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-sm font-medium hover:text-primary-500 transition-colors"
-                        x-text="selectedLanguage === 'id' ? 'Tentang' : 'About'"></a>
-                    <a href="#skills" class="text-sm font-medium hover:text-primary-500 transition-colors"
-                        x-text="selectedLanguage === 'id' ? 'Keahlian' : 'Skills'"></a>
-                    <a href="#projects" class="text-sm font-medium hover:text-primary-500 transition-colors"
-                        x-text="selectedLanguage === 'id' ? 'Proyek' : 'Projects'"></a>
-                    <a href="#publications" class="text-sm font-medium hover:text-primary-500 transition-colors"
-                        x-text="selectedLanguage === 'id' ? 'Publikasi' : 'Publications'"></a>
-                    <a href="#books" class="text-sm font-medium hover:text-primary-500 transition-colors"
-                        x-text="selectedLanguage === 'id' ? 'Buku' : 'Books'"></a>
-                    <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener noreferrer"
-                        class="text-sm font-medium hover:text-primary-500 transition-colors flex items-center gap-1">
-                        Blog <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
-                    <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener noreferrer"
-                        class="text-sm font-medium hover:text-primary-500 transition-colors flex items-center gap-1">
-                        Playground <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
-                </div>
-
-                <div class="flex items-center gap-3">
-                    <!-- Language Toggle -->
-                    <button @click="toggleLanguage()"
-                        class="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 transition-all">
-                        <span x-text="selectedLanguage.toUpperCase()"></span>
-                    </button>
-
-                    <!-- Dark Mode Toggle -->
-                    <button @click="darkMode = !darkMode"
-                        class="w-10 h-10 rounded-xl bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-300/50 dark:hover:bg-slate-700/50 flex items-center justify-center transition-all">
-                        <i class="fas fa-sun text-amber-500" x-show="!darkMode"></i>
-                        <i class="fas fa-moon text-indigo-400" x-show="darkMode" x-cloak></i>
-                    </button>
-
-                    <!-- Mobile menu button -->
-                    <div x-data="{ mobileMenu: false }" class="md:hidden relative">
-                        <button @click="mobileMenu = !mobileMenu"
-                            class="w-10 h-10 rounded-xl bg-slate-200/50 dark:bg-slate-800/50 flex items-center justify-center">
-                            <i class="fas fa-bars" x-show="!mobileMenu"></i>
-                            <i class="fas fa-times" x-show="mobileMenu" x-cloak></i>
-                        </button>
-
-                        <!-- Mobile Menu Dropdown -->
-                        <div x-show="mobileMenu" x-cloak
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            x-transition:leave="transition ease-in duration-150"
-                            x-transition:leave-start="opacity-100 translate-y-0"
-                            x-transition:leave-end="opacity-0 -translate-y-2"
-                            @click.away="mobileMenu = false"
-                            class="absolute right-0 top-14 w-48 bg-white dark:bg-slate-900 rounded-xl py-2 shadow-xl border border-slate-200 dark:border-slate-700">
-                            <a href="#about" @click="mobileMenu = false"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
-                                x-text="selectedLanguage === 'id' ? 'Tentang' : 'About'"></a>
-                            <a href="#skills" @click="mobileMenu = false"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
-                                x-text="selectedLanguage === 'id' ? 'Keahlian' : 'Skills'"></a>
-                            <a href="#projects" @click="mobileMenu = false"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
-                                x-text="selectedLanguage === 'id' ? 'Proyek' : 'Projects'"></a>
-                            <a href="#publications" @click="mobileMenu = false"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
-                                x-text="selectedLanguage === 'id' ? 'Publikasi' : 'Publications'"></a>
-                            <a href="#books" @click="mobileMenu = false"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
-                                x-text="selectedLanguage === 'id' ? 'Buku' : 'Books'"></a>
-                            <div class="border-t border-slate-200 dark:border-slate-700 my-2"></div>
-                            <a href="https://blog.luthfidhani.my.id/" target="_blank" rel="noopener noreferrer"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors flex items-center gap-2">
-                                Blog <i class="fas fa-external-link-alt text-xs"></i>
-                            </a>
-                            <a href="https://playground.luthfidhani.my.id/" target="_blank" rel="noopener noreferrer"
-                                class="block px-4 py-2 text-sm font-medium hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors flex items-center gap-2">
-                                Playground <i class="fas fa-external-link-alt text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="about" class="min-h-screen flex items-center pt-24 pb-16 px-4">
-        <div class="max-w-6xl mx-auto w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Profile Image -->
-                <div class="relative flex justify-center lg:justify-start order-1 lg:order-2">
-                    <div class="relative">
-                        <!-- Animated blob background -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-primary-400 via-accent-500 to-pink-500 blob opacity-80 blur-sm scale-110 animate-glow">
-                        </div>
-
-                        <!-- Profile image -->
-                        <div
-                            class="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 border-white/20 dark:border-slate-800/50 shadow-2xl">
-                            <img :src="profile.image" :alt="profile.name" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Floating badges -->
-                        <div class="absolute -top-4 -right-4 glass px-4 py-2 rounded-xl animate-float">
-                            <span class="text-2xl">🚀</span>
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 glass px-4 py-2 rounded-xl animate-float"
-                            style="animation-delay: -2s;">
-                            <span class="text-2xl">💻</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Profile Info -->
-                <div class="order-2 lg:order-1 text-center lg:text-left">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium mb-6">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        <span
-                            x-text="selectedLanguage === 'id' ? 'Tersedia untuk peluang baru' : 'Available for new opportunities'"></span>
-                    </div>
-
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                        <span x-text="selectedLanguage === 'id' ? 'Halo, saya' : 'Hi, I\'m'"></span>
-                        <br>
-                        <span class="gradient-text" x-text="profile.name"></span>
-                    </h1>
-
-                    <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-medium mb-6"
-                        x-text="profile.jobTitle[selectedLanguage]"></p>
-
-                    <p class="text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-xl"
-                        x-text="profile.description[selectedLanguage]"></p>
-
-                    <!-- Social Links -->
-                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                        <template x-for="social in socmeds" :key="social.name">
-                            <a :href="social.link" target="_blank" rel="noopener noreferrer"
-                                class="w-12 h-12 rounded-xl bg-slate-200/50 dark:bg-slate-800/50 hover:bg-gradient-to-br hover:from-primary-500 hover:to-accent-500 flex items-center justify-center group transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary-500/25">
-                                <i :class="social.icon"
-                                    class="text-lg text-slate-600 dark:text-slate-400 group-hover:text-white transition-colors"></i>
-                            </a>
-                        </template>
-                    </div>
-
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-wrap gap-4 mt-8 justify-center lg:justify-start">
-                        <a href="#projects"
-                            class="px-8 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-semibold hover:shadow-lg hover:shadow-primary-500/25 hover:-translate-y-1 transition-all duration-300">
-                            <span x-text="selectedLanguage === 'id' ? 'Lihat Proyek' : 'View Projects'"></span>
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        <a href="mailto:luthfidhani17@gmail.com"
-                            class="px-8 py-3 rounded-xl border-2 border-slate-300 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 font-semibold hover:-translate-y-1 transition-all duration-300">
-                            <span x-text="selectedLanguage === 'id' ? 'Hubungi Saya' : 'Contact Me'"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll indicator -->
-            <div class="hidden md:flex justify-center mt-16">
-                <a href="#skills"
-                    class="flex flex-col items-center gap-2 text-slate-400 hover:text-primary-500 transition-colors animate-bounce-slow">
-                    <span class="text-sm" x-text="selectedLanguage === 'id' ? 'Scroll ke bawah' : 'Scroll down'"></span>
-                    <i class="fas fa-chevron-down"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-sm font-medium mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Keahlian' : 'Skills'"></span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Teknologi yang Saya Gunakan' : 'Technologies I Work With'">
-                </h2>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
-                    x-text="selectedLanguage === 'id' ? 'Berikut adalah teknologi dan tools yang saya kuasai untuk membangun solusi data dan software berkualitas.' : 'Here are the technologies and tools I use to build quality data and software solutions.'">
+    <main id="top">
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="availability">
+                    <span></span>
+                    <span x-text="selectedLanguage === 'id' ? 'Data engineer di Insight Timer' : 'Data engineer at Insight Timer'"></span>
                 </p>
+                <h1>
+                    <span x-text="selectedLanguage === 'id' ? 'Saya bikin data' : 'I make data'"></span><br>
+                    <span x-text="selectedLanguage === 'id' ? 'lebih berguna.' : 'more useful.'"></span>
+                </h1>
+                <p class="hero-intro"
+                    x-text="selectedLanguage === 'id' ? 'Gue Luthfi. Sehari-hari membangun pipeline yang tahan banting, backend yang masuk akal, dan sesekali menerjemahkan topik AI jadi bahasa manusia.' : 'I’m Luthfi. I build dependable data pipelines, sensible backends, and occasionally translate complicated AI topics into human language.'">
+                </p>
+                <div class="hero-links">
+                    <a class="primary-link" href="#work">
+                        <span x-text="selectedLanguage === 'id' ? 'Lihat yang gue buat' : 'See what I build'"></span>
+                    </a>
+                    <a class="plain-link" href="mailto:luthfidhani17@gmail.com">
+                        <span x-text="selectedLanguage === 'id' ? 'Ngobrol lewat email' : 'Start a conversation'"></span>
+                    </a>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <template x-for="(items, category) in skills" :key="category">
-                    <div class="glass rounded-2xl p-6 glow-effect card-hover">
-                        <h3 class="text-lg font-semibold mb-6 flex items-center gap-3">
-                            <span
-                                class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white">
-                                <i class="fas" :class="{
-                                    'fa-layer-group': category === 'frameworks',
-                                    'fa-database': category === 'dataEngineering',
-                                    'fa-cloud': category === 'cloudDevOps',
-                                    'fa-code': category === 'programmingLanguages'
-                                }"></i>
-                            </span>
-                            <span x-text="formatCategoryName(category)"></span>
-                        </h3>
-                        <div class="flex flex-wrap gap-4">
-                            <template x-for="skill in items" :key="skill.alt">
-                                <div class="skill-icon w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white dark:bg-slate-800 p-3 shadow-sm flex items-center justify-center"
-                                    :title="skill.alt">
-                                    <img :src="skill.image" :alt="skill.alt" class="w-full h-full object-contain">
-                                </div>
-                            </template>
+            <div class="hero-portrait">
+                <div class="portrait-frame">
+                    <img :src="profile.image" :alt="profile.name"
+                        onerror="this.onerror=null;this.src='assets/img/avataaars.svg'">
+                    <span class="portrait-note" x-text="selectedLanguage === 'id' ? 'Jakarta, ID' : 'Based in Jakarta'"></span>
+                </div>
+                <p class="side-note" aria-hidden="true">DATA / SOFTWARE / WRITING</p>
+            </div>
+        </section>
+
+        <section class="manifesto" aria-label="What I do">
+            <p x-text="selectedLanguage === 'id' ? 'Dari data mentah sampai keputusan yang bisa dipakai.' : 'From raw data to decisions people can actually use.'"></p>
+            <div class="proof-list" aria-label="Portfolio highlights">
+                <div>
+                    <strong x-text="projects.length"></strong>
+                    <span x-text="selectedLanguage === 'id' ? 'proyek publik' : 'public projects'"></span>
+                </div>
+                <div>
+                    <strong x-text="publications.length"></strong>
+                    <span x-text="selectedLanguage === 'id' ? 'publikasi' : 'research papers'"></span>
+                </div>
+                <div>
+                    <strong x-text="books.length"></strong>
+                    <span x-text="selectedLanguage === 'id' ? 'buku terbit' : 'published book'"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="section-shell work-section" x-data="{ showAll: false }">
+            <div class="section-heading">
+                <h2 x-text="selectedLanguage === 'id' ? 'Pilihan karya' : 'Selected work'"></h2>
+                <div>
+                    <p x-text="selectedLanguage === 'id' ? 'Produk kecil, eksperimen, dan alat yang lahir dari masalah nyata. Empat yang pertama adalah titik mulai terbaik.' : 'Small products, experiments, and tools born from real problems. The first four are the best place to start.'"></p>
+                    <a class="section-link" href="https://github.com/luthfidhani" target="_blank" rel="noopener"
+                        x-text="selectedLanguage === 'id' ? 'Lihat profil GitHub ↗' : 'Visit GitHub profile ↗'"></a>
+                </div>
+            </div>
+
+            <div class="project-list">
+                <template x-for="(project, index) in (showAll ? projects : projects.slice(0, 4))" :key="project.link">
+                    <a class="project-row" :href="project.link" target="_blank" rel="noopener">
+                        <span class="project-number" x-text="String(index + 1).padStart(2, '0')"></span>
+                        <div class="project-image">
+                            <img :src="project.image" :alt="project.title[selectedLanguage]" loading="lazy">
                         </div>
-                    </div>
+                        <div class="project-copy">
+                            <span class="project-label" x-show="index < 4"
+                                x-text="selectedLanguage === 'id' ? 'Pilihan' : 'Featured'"></span>
+                            <h3 x-text="project.title[selectedLanguage]"></h3>
+                            <p x-text="project.description[selectedLanguage]"></p>
+                            <ul aria-label="Technologies">
+                                <template x-for="tag in project.category.slice(0, 4)" :key="tag">
+                                    <li x-text="tag"></li>
+                                </template>
+                            </ul>
+                        </div>
+                        <span class="project-open" aria-hidden="true">↗</span>
+                    </a>
                 </template>
             </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Portfolio' : 'Portfolio'"></span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Proyek Terbaru' : 'Recent Projects'"></h2>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
-                    x-text="selectedLanguage === 'id' ? 'Beberapa proyek yang telah saya kerjakan, dari aplikasi web hingga bot dan machine learning.' : 'Some projects I have worked on, from web applications to bots and machine learning.'">
-                </p>
+            <button class="show-more" @click="showAll = !showAll">
+                <span x-text="showAll ? (selectedLanguage === 'id' ? 'Tutup arsip proyek' : 'Close project archive') : (selectedLanguage === 'id' ? `Buka arsip: ${projects.length - 4} proyek lainnya` : `Open archive: ${projects.length - 4} more projects`)"></span>
+                <span x-text="showAll ? '−' : '+'"></span>
+            </button>
+        </section>
+
+        <section id="principles" class="principles-section">
+            <div class="principles-heading">
+                <p x-text="selectedLanguage === 'id' ? 'Cara gue bekerja' : 'How I work'"></p>
+                <h2 x-text="selectedLanguage === 'id' ? 'Sistem yang bagus bukan cuma jalan hari ini.' : 'Good systems should outlive today’s requirements.'"></h2>
+            </div>
+            <div class="principle-list">
+                <article>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Andal sebelum canggih' : 'Reliable before clever'"></h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Pipeline yang mudah dipantau dan dipulihkan selalu menang dari solusi pintar yang rapuh.' : 'A pipeline that is observable and recoverable beats a clever but fragile solution.'"></p>
+                </article>
+                <article>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Jelas untuk orang berikutnya' : 'Clear for the next person'"></h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Kode, model data, dan keputusan teknis harus bisa dipahami tanpa arkeologi berjam-jam.' : 'Code, data models, and technical decisions should not require hours of archaeology.'"></p>
+                </article>
+                <article>
+                    <h3 x-text="selectedLanguage === 'id' ? 'Mulai kecil, kirim, pelajari' : 'Start small, ship, learn'"></h3>
+                    <p x-text="selectedLanguage === 'id' ? 'Validasi kebutuhan paling penting dulu, lalu tambah kompleksitas hanya ketika memang dibutuhkan.' : 'Validate the important need first, then add complexity only when it earns its place.'"></p>
+                </article>
+            </div>
+        </section>
+
+        <section id="toolkit" class="toolkit-section">
+            <div class="toolkit-intro">
+                <h2 x-text="selectedLanguage === 'id' ? 'Yang ada di meja kerja' : 'What’s on my workbench'"></h2>
+                <p x-text="selectedLanguage === 'id' ? 'Teknologi cuma alat. Ini yang paling sering gue pakai untuk memindahkan data, melatih model, menjalankan sistem, dan mengirim produk.' : 'Technology is just a tool. These are the ones I reach for to move data, train models, run systems, and ship products.'"></p>
             </div>
 
-            <div x-data="{ showAll: false }">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <template x-for="(project, index) in (showAll ? projects : projects.slice(0, 6))"
-                        :key="project.link">
-                        <a :href="project.link" target="_blank" rel="noopener noreferrer"
-                            class="group glass rounded-2xl overflow-hidden card-hover glow-effect">
-                            <!-- Project Image -->
-                            <div class="relative h-48 overflow-hidden">
-                                <img :src="project.image" :alt="project.title[selectedLanguage]"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <h3 class="text-white font-bold text-lg" x-text="project.title[selectedLanguage]">
-                                    </h3>
-                                </div>
-                            </div>
+            <div class="skill-groups">
+                <template x-for="(items, category) in skills" :key="category">
+                    <article class="skill-group">
+                        <h3 x-text="formatCategoryName(category)"></h3>
+                        <ul>
+                            <template x-for="skill in items" :key="skill.alt">
+                                <li>
+                                    <img :src="skill.image" :alt="" loading="lazy">
+                                    <span x-text="skill.alt"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </article>
+                </template>
+            </div>
+        </section>
 
-                            <!-- Project Info -->
-                            <div class="p-5">
-                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-4"
-                                    x-text="project.description[selectedLanguage]"></p>
+        <section id="writing" class="section-shell writing-section">
+            <div class="section-heading">
+                <h2 x-text="selectedLanguage === 'id' ? 'Catatan & publikasi' : 'Notes & publications'"></h2>
+                <p x-text="selectedLanguage === 'id' ? 'Menulis adalah cara gue merapikan pikiran.' : 'Writing is how I tidy up my thinking.'"></p>
+            </div>
 
-                                <!-- Tags -->
-                                <div class="flex flex-wrap gap-2">
-                                    <template x-for="tag in project.category.slice(0, 4)" :key="tag">
-                                        <span
-                                            class="tag-pill px-3 py-1 text-xs font-medium rounded-full bg-slate-200/50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300"
-                                            x-text="tag"></span>
-                                    </template>
-                                </div>
-
-                                <!-- View link -->
-                                <div
-                                    class="flex items-center gap-2 mt-4 text-primary-500 font-medium text-sm group-hover:gap-4 transition-all">
-                                    <span x-text="selectedLanguage === 'id' ? 'Lihat Proyek' : 'View Project'"></span>
-                                    <i class="fas fa-arrow-right"></i>
-                                </div>
-                            </div>
+            <div class="writing-grid">
+                <div class="publication-list">
+                    <template x-for="pub in publications" :key="pub.link">
+                        <a :href="pub.link" target="_blank" rel="noopener">
+                            <span x-text="selectedLanguage === 'id' ? 'Jurnal' : 'Research paper'"></span>
+                            <h3 x-text="pub.title[selectedLanguage]"></h3>
+                            <p x-text="pub.description[selectedLanguage]"></p>
                         </a>
                     </template>
                 </div>
 
-                <!-- Show More Button -->
-                <div class="text-center mt-12">
-                    <button @click="showAll = !showAll"
-                        class="px-8 py-3 rounded-xl border-2 border-slate-300 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 font-semibold hover:-translate-y-1 transition-all duration-300"
-                        x-show="projects.length > 6">
-                        <span
-                            x-text="showAll ? (selectedLanguage === 'id' ? 'Sembunyikan' : 'Show Less') : (selectedLanguage === 'id' ? 'Lihat Semua Proyek' : 'View All Projects')"></span>
-                        <i class="fas ml-2" :class="showAll ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 text-sm font-medium mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Penelitian' : 'Research'"></span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Publikasi Ilmiah' : 'Publications'"></h2>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
-                    x-text="selectedLanguage === 'id' ? 'Artikel dan jurnal ilmiah yang telah saya publikasikan.' : 'Scientific articles and journals I have published.'">
-                </p>
-            </div>
-
-            <div class="space-y-6 max-w-4xl mx-auto">
-                <template x-for="pub in publications" :key="pub.link">
-                    <a :href="pub.link" target="_blank" rel="noopener noreferrer"
-                        class="block glass rounded-2xl p-6 card-hover glow-effect group">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-white flex-shrink-0">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg mb-2 group-hover:text-primary-500 transition-colors"
-                                    x-text="pub.title[selectedLanguage]"></h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm"
-                                    x-text="pub.description[selectedLanguage]"></p>
-                                <div
-                                    class="flex items-center gap-2 mt-4 text-primary-500 font-medium text-sm group-hover:gap-4 transition-all">
-                                    <span
-                                        x-text="selectedLanguage === 'id' ? 'Baca Publikasi' : 'Read Publication'"></span>
-                                    <i class="fas fa-external-link-alt"></i>
-                                </div>
-                            </div>
+                <template x-for="book in books" :key="book.link">
+                    <a class="book-feature" :href="book.link" target="_blank" rel="noopener">
+                        <img :src="book.cover" :alt="book.title[selectedLanguage]" loading="lazy">
+                        <div>
+                            <span x-text="selectedLanguage === 'id' ? 'Buku' : 'Book'"></span>
+                            <h3 x-text="book.title[selectedLanguage]"></h3>
+                            <p x-text="book.subtitle[selectedLanguage]"></p>
+                            <strong x-text="selectedLanguage === 'id' ? 'Baca bukunya ↗' : 'Read the book ↗'"></strong>
                         </div>
                     </a>
                 </template>
             </div>
+        </section>
+
+        <section class="contact-section">
+            <p x-text="selectedLanguage === 'id' ? 'Punya data berantakan atau ide yang belum jadi?' : 'Messy data or an idea that needs building?'"></p>
+            <a href="mailto:luthfidhani17@gmail.com"
+                x-text="selectedLanguage === 'id' ? 'Ceritain ke gue.' : 'Tell me about it.'"></a>
+            <span x-text="selectedLanguage === 'id' ? 'Terbuka untuk ngobrol soal data engineering, sistem backend, dan kolaborasi yang menarik.' : 'Open to conversations about data engineering, backend systems, and interesting collaborations.'"></span>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <strong>Luthfi Afrizal Ardhani</strong>
+            <span x-text="selectedLanguage === 'id' ? 'Data engineer yang suka bikin sesuatu.' : 'A data engineer who likes making things.'"></span>
         </div>
-    </section>
-
-    <!-- Books Section -->
-    <section id="books" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-sm font-medium mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Buku' : 'Books'"></span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"
-                    x-text="selectedLanguage === 'id' ? 'Buku yang Telah Saya Tulis' : 'Books I\'ve Written'"></h2>
-            </div>
-
-            <template x-for="book in books" :key="book.link">
-                <div class="max-w-4xl mx-auto">
-                    <div class="glass rounded-3xl overflow-hidden glow-effect">
-                        <div class="grid md:grid-cols-2 gap-8 p-8">
-                            <!-- Book Cover -->
-                            <div class="flex justify-center">
-                                <div class="relative group">
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity">
-                                    </div>
-                                    <img :src="book.cover" :alt="book.title[selectedLanguage]"
-                                        class="relative w-64 md:w-72 rounded-2xl shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                            </div>
-
-                            <!-- Book Info -->
-                            <div class="flex flex-col justify-center">
-                                <h3 class="text-2xl md:text-3xl font-bold mb-2" x-text="book.title[selectedLanguage]">
-                                </h3>
-                                <p class="text-lg text-slate-600 dark:text-slate-400 font-medium mb-4"
-                                    x-text="book.subtitle[selectedLanguage]"></p>
-                                <p class="text-slate-600 dark:text-slate-400 mb-6"
-                                    x-text="book.description[selectedLanguage]"></p>
-
-                                <!-- Tags -->
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <template x-for="tag in book.category" :key="tag">
-                                        <span
-                                            class="tag-pill px-3 py-1 text-xs font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
-                                            x-text="tag"></span>
-                                    </template>
-                                </div>
-
-                                <a :href="book.link" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-1 transition-all duration-300 w-fit">
-                                    <i class="fas fa-book-open"></i>
-                                    <span x-text="selectedLanguage === 'id' ? 'Baca Buku' : 'Read Book'"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="social-links">
+            <template x-for="social in socmeds" :key="social.name">
+                <a :href="social.link" target="_blank" rel="noopener" x-text="social.name"></a>
             </template>
         </div>
-    </section>
-
-    <!-- Contact CTA Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="relative glass rounded-3xl p-8 md:p-12 text-center overflow-hidden">
-                <!-- Background decoration -->
-                <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-accent-500/10 to-pink-500/10">
-                </div>
-
-                <div class="relative">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4"
-                        x-text="selectedLanguage === 'id' ? 'Mari Berkolaborasi!' : 'Let\'s Collaborate!'"></h2>
-                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8"
-                        x-text="selectedLanguage === 'id' ? 'Tertarik untuk bekerja sama atau punya proyek menarik? Jangan ragu untuk menghubungi saya!' : 'Interested in working together or have an exciting project? Don\'t hesitate to reach out!'">
-                    </p>
-
-                    <div class="flex flex-wrap gap-4 justify-center">
-                        <a href="mailto:luthfidhani17@gmail.com"
-                            class="px-8 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white font-semibold hover:shadow-lg hover:shadow-primary-500/25 hover:-translate-y-1 transition-all duration-300">
-                            <i class="fas fa-envelope mr-2"></i>
-                            <span x-text="selectedLanguage === 'id' ? 'Kirim Email' : 'Send Email'"></span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/luthfi-afrizal-ardhani/" target="_blank"
-                            rel="noopener noreferrer"
-                            class="px-8 py-3 rounded-xl border-2 border-slate-300 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 font-semibold hover:-translate-y-1 transition-all duration-300">
-                            <i class="fab fa-linkedin mr-2"></i>
-                            LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 px-4 border-t border-slate-200 dark:border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-4">
-                    <span class="text-2xl font-bold gradient-text">LA</span>
-                    <span class="text-slate-500 dark:text-slate-400">|</span>
-                    <span class="text-slate-600 dark:text-slate-400" x-text="profile.name"></span>
-                </div>
-
-                <div class="flex items-center gap-4">
-                    <template x-for="social in socmeds" :key="social.name">
-                        <a :href="social.link" target="_blank" rel="noopener noreferrer"
-                            class="w-10 h-10 rounded-lg bg-slate-200/50 dark:bg-slate-800/50 hover:bg-primary-500 flex items-center justify-center group transition-all">
-                            <i :class="social.icon"
-                                class="text-slate-500 dark:text-slate-400 group-hover:text-white transition-colors"></i>
-                        </a>
-                    </template>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
-                <p class="text-slate-500 dark:text-slate-400 text-sm">
-                    <span x-text="selectedLanguage === 'id' ? 'Dibuat dengan' : 'Made with'"></span>
-                    <span class="text-red-500 mx-1">❤️</span>
-                    <span x-text="selectedLanguage === 'id' ? 'di 🌏' : 'on 🌏'"></span>
-                </p>
-                <p class="text-slate-400 dark:text-slate-500 text-sm mt-2">
-                    © <span x-text="new Date().getFullYear()"></span> Luthfi Afrizal Ardhani. All rights reserved.
-                </p>
-            </div>
-        </div>
+        <span>© <span x-text="new Date().getFullYear()"></span></span>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button x-data="{ show: false }" @scroll.window="show = window.scrollY > 500" x-show="show"
-        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4"
-        x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4"
-        @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-        class="fixed bottom-8 right-8 w-12 h-12 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 text-white flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 z-50">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Load profile data -->
     <script src="js/scripts.js"></script>
 </body>
 
